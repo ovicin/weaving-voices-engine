@@ -1,0 +1,23 @@
+#xcode files
+*.mode*
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata/
+
+#builds
+build/
+obj/
+*.o
+*.app
+*.dll
+*.exe
+
+#mac files
+.DS_Store
+*.pbxproj
+
+*.pbxproj
+
+ofWeavingVoices.xcodeproj.xcodeproj/project.pbxproj
+
