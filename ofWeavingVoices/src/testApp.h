@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "WeavingPoint.h"
 
+#include "ofxBounce.h"
+#include "ofxRipples.h"
+
 class testApp : public ofBaseApp{
 
 	public:
@@ -20,6 +23,11 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    vector <WeavingPoint> Points;
+    vector <WeavingPoint*> Points;
+    vector <ofPoint*> upRow, downRow, leftColumn, rightColumn;
+    
+    
+    ofxRipples  rip;
+    ofxBounce   bounce;
 		
 };
