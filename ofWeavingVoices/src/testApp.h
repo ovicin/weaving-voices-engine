@@ -5,6 +5,7 @@
 
 #include "ofxBounce.h"
 #include "ofxRipples.h"
+#include "ofxRules.h"
 
 class testApp : public ofBaseApp{
 
@@ -29,5 +30,10 @@ class testApp : public ofBaseApp{
     
     ofxRipples  rip;
     ofxBounce   bounce;
+    
+    
+    Branch::Ptr createBranch(Rule::Ptr rule);
+    ofEasyCam cam;
+    ofxRules rules;
 		
 };

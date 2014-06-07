@@ -38,6 +38,19 @@
 		9F5C6DD965B4F3A6DB5B88F8 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02FF3B8D243CFB85AE0909EB /* ofxUI2DGraph.cpp */; };
 		A53B59AF19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */; };
 		A59570B019411B1400539D7A /* WeavingPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59570AE19411B1400539D7A /* WeavingPoint.cpp */; };
+		A59C9E121943AF7900F34121 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DF71943AF7900F34121 /* Action.cpp */; };
+		A59C9E131943AF7900F34121 /* ConeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DF91943AF7900F34121 /* ConeAction.cpp */; };
+		A59C9E141943AF7900F34121 /* CubeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DFB1943AF7900F34121 /* CubeAction.cpp */; };
+		A59C9E151943AF7900F34121 /* IcosphereAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DFD1943AF7900F34121 /* IcosphereAction.cpp */; };
+		A59C9E161943AF7900F34121 /* LineAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DFF1943AF7900F34121 /* LineAction.cpp */; };
+		A59C9E171943AF7900F34121 /* PlaneAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E011943AF7900F34121 /* PlaneAction.cpp */; };
+		A59C9E181943AF7900F34121 /* PointAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E031943AF7900F34121 /* PointAction.cpp */; };
+		A59C9E191943AF7900F34121 /* TransformAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E051943AF7900F34121 /* TransformAction.cpp */; };
+		A59C9E1A1943AF7900F34121 /* TubeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E071943AF7900F34121 /* TubeAction.cpp */; };
+		A59C9E1B1943AF7900F34121 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E091943AF7900F34121 /* Branch.cpp */; };
+		A59C9E1C1943AF7900F34121 /* Rule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0C1943AF7900F34121 /* Rule.cpp */; };
+		A59C9E1D1943AF7900F34121 /* Rules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0E1943AF7900F34121 /* Rules.cpp */; };
+		A59C9E1E1943AF7900F34121 /* RuleSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E101943AF7900F34121 /* RuleSet.cpp */; };
 		ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5613D5D24B00D8AD909F7E6A /* ofxUISortableList.cpp */; };
 		AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345327AA463407B3DADBADE /* ofxUIWaveform.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -206,6 +219,33 @@
 		A53B59AE19422BAD0075A8EF /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		A59570AE19411B1400539D7A /* WeavingPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeavingPoint.cpp; sourceTree = "<group>"; };
 		A59570AF19411B1400539D7A /* WeavingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeavingPoint.h; sourceTree = "<group>"; };
+		A59C9DF71943AF7900F34121 /* Action.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
+		A59C9DF81943AF7900F34121 /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
+		A59C9DF91943AF7900F34121 /* ConeAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConeAction.cpp; sourceTree = "<group>"; };
+		A59C9DFA1943AF7900F34121 /* ConeAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConeAction.h; sourceTree = "<group>"; };
+		A59C9DFB1943AF7900F34121 /* CubeAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CubeAction.cpp; sourceTree = "<group>"; };
+		A59C9DFC1943AF7900F34121 /* CubeAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeAction.h; sourceTree = "<group>"; };
+		A59C9DFD1943AF7900F34121 /* IcosphereAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IcosphereAction.cpp; sourceTree = "<group>"; };
+		A59C9DFE1943AF7900F34121 /* IcosphereAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcosphereAction.h; sourceTree = "<group>"; };
+		A59C9DFF1943AF7900F34121 /* LineAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LineAction.cpp; sourceTree = "<group>"; };
+		A59C9E001943AF7900F34121 /* LineAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineAction.h; sourceTree = "<group>"; };
+		A59C9E011943AF7900F34121 /* PlaneAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlaneAction.cpp; sourceTree = "<group>"; };
+		A59C9E021943AF7900F34121 /* PlaneAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneAction.h; sourceTree = "<group>"; };
+		A59C9E031943AF7900F34121 /* PointAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointAction.cpp; sourceTree = "<group>"; };
+		A59C9E041943AF7900F34121 /* PointAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointAction.h; sourceTree = "<group>"; };
+		A59C9E051943AF7900F34121 /* TransformAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TransformAction.cpp; sourceTree = "<group>"; };
+		A59C9E061943AF7900F34121 /* TransformAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformAction.h; sourceTree = "<group>"; };
+		A59C9E071943AF7900F34121 /* TubeAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TubeAction.cpp; sourceTree = "<group>"; };
+		A59C9E081943AF7900F34121 /* TubeAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeAction.h; sourceTree = "<group>"; };
+		A59C9E091943AF7900F34121 /* Branch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
+		A59C9E0A1943AF7900F34121 /* Branch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Branch.h; sourceTree = "<group>"; };
+		A59C9E0B1943AF7900F34121 /* ofxRules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxRules.h; sourceTree = "<group>"; };
+		A59C9E0C1943AF7900F34121 /* Rule.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rule.cpp; sourceTree = "<group>"; };
+		A59C9E0D1943AF7900F34121 /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
+		A59C9E0E1943AF7900F34121 /* Rules.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rules.cpp; sourceTree = "<group>"; };
+		A59C9E0F1943AF7900F34121 /* Rules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rules.h; sourceTree = "<group>"; };
+		A59C9E101943AF7900F34121 /* RuleSet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RuleSet.cpp; sourceTree = "<group>"; };
+		A59C9E111943AF7900F34121 /* RuleSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleSet.h; sourceTree = "<group>"; };
 		A64B8AA7481267CD4A76C16B /* ofxUITabBar.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUITabBar.cpp; path = ../../../addons/ofxUI/src/ofxUITabBar.cpp; sourceTree = SOURCE_ROOT; };
 		A8896AC3BECAAA504E3828F4 /* ofxUIEventArgs.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIEventArgs.cpp; path = ../../../addons/ofxUI/src/ofxUIEventArgs.cpp; sourceTree = SOURCE_ROOT; };
 		ACE80EF2FE2F3D0A2ED1A824 /* ofxTint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTint.h; path = ../../../addons/ofxFX/src/generative/ofxTint.h; sourceTree = SOURCE_ROOT; };
@@ -412,9 +452,61 @@
 			path = ../../../addons/ofxMSAInteractiveObject/src;
 			sourceTree = "<group>";
 		};
+		A59C9DF41943AF7900F34121 /* ofxRules */ = {
+			isa = PBXGroup;
+			children = (
+				A59C9DF51943AF7900F34121 /* src */,
+			);
+			name = ofxRules;
+			sourceTree = "<group>";
+		};
+		A59C9DF51943AF7900F34121 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A59C9DF61943AF7900F34121 /* actions */,
+				A59C9E091943AF7900F34121 /* Branch.cpp */,
+				A59C9E0A1943AF7900F34121 /* Branch.h */,
+				A59C9E0B1943AF7900F34121 /* ofxRules.h */,
+				A59C9E0C1943AF7900F34121 /* Rule.cpp */,
+				A59C9E0D1943AF7900F34121 /* Rule.h */,
+				A59C9E0E1943AF7900F34121 /* Rules.cpp */,
+				A59C9E0F1943AF7900F34121 /* Rules.h */,
+				A59C9E101943AF7900F34121 /* RuleSet.cpp */,
+				A59C9E111943AF7900F34121 /* RuleSet.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxRules/src;
+			sourceTree = "<group>";
+		};
+		A59C9DF61943AF7900F34121 /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				A59C9DF71943AF7900F34121 /* Action.cpp */,
+				A59C9DF81943AF7900F34121 /* Action.h */,
+				A59C9DF91943AF7900F34121 /* ConeAction.cpp */,
+				A59C9DFA1943AF7900F34121 /* ConeAction.h */,
+				A59C9DFB1943AF7900F34121 /* CubeAction.cpp */,
+				A59C9DFC1943AF7900F34121 /* CubeAction.h */,
+				A59C9DFD1943AF7900F34121 /* IcosphereAction.cpp */,
+				A59C9DFE1943AF7900F34121 /* IcosphereAction.h */,
+				A59C9DFF1943AF7900F34121 /* LineAction.cpp */,
+				A59C9E001943AF7900F34121 /* LineAction.h */,
+				A59C9E011943AF7900F34121 /* PlaneAction.cpp */,
+				A59C9E021943AF7900F34121 /* PlaneAction.h */,
+				A59C9E031943AF7900F34121 /* PointAction.cpp */,
+				A59C9E041943AF7900F34121 /* PointAction.h */,
+				A59C9E051943AF7900F34121 /* TransformAction.cpp */,
+				A59C9E061943AF7900F34121 /* TransformAction.h */,
+				A59C9E071943AF7900F34121 /* TubeAction.cpp */,
+				A59C9E081943AF7900F34121 /* TubeAction.h */,
+			);
+			path = actions;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				A59C9DF41943AF7900F34121 /* ofxRules */,
 				A53B59AB19422BAD0075A8EF /* ofxMSAInteractiveObject */,
 				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,
 				CABF1A23B637491112B10A00 /* ofxFX */,
@@ -729,6 +821,7 @@
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 				A59570B019411B1400539D7A /* WeavingPoint.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
+				A59C9E1E1943AF7900F34121 /* RuleSet.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				5355E99D8BBC71222AA2B9FD /* ofxFXObject.cpp in Sources */,
 				9F5C6DD965B4F3A6DB5B88F8 /* ofxUI2DGraph.cpp in Sources */,
@@ -740,19 +833,27 @@
 				DF0C851B244C4C867CEA8806 /* ofxUICircleSlider.cpp in Sources */,
 				9BE4AE0AA2B8C436BDFE9D4D /* ofxUIDragableLabelButton.cpp in Sources */,
 				F392A99D83698FC099127880 /* ofxUIDropDownList.cpp in Sources */,
+				A59C9E1C1943AF7900F34121 /* Rule.cpp in Sources */,
 				084025DA517D8329301FE1B6 /* ofxUIEventArgs.cpp in Sources */,
 				7252706DA14C1BE63950ADDA /* ofxUIFPS.cpp in Sources */,
 				22030CBDCC25D815E7ED6757 /* ofxUIFPSSlider.cpp in Sources */,
+				A59C9E141943AF7900F34121 /* CubeAction.cpp in Sources */,
 				3D4EA8E172D3E4A30FEFA969 /* ofxUIImage.cpp in Sources */,
 				7F2CD93F681F3C1547B3BF2C /* ofxUIImageButton.cpp in Sources */,
 				FBD0CD0AFE3849C14E829CAF /* ofxUIImageSampler.cpp in Sources */,
 				26874B150C8535AEA0F24C8C /* ofxUIImageSlider.cpp in Sources */,
+				A59C9E1B1943AF7900F34121 /* Branch.cpp in Sources */,
+				A59C9E1A1943AF7900F34121 /* TubeAction.cpp in Sources */,
 				FB8AA9FA6535767BE31806BC /* ofxUIImageToggle.cpp in Sources */,
+				A59C9E121943AF7900F34121 /* Action.cpp in Sources */,
 				7C3DC84C9BFCBD2866DB2B6C /* ofxUILabel.cpp in Sources */,
 				A53B59AF19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp in Sources */,
+				A59C9E191943AF7900F34121 /* TransformAction.cpp in Sources */,
 				FFD1EBFCA24DFB4E4427B4FE /* ofxUILabelButton.cpp in Sources */,
+				A59C9E131943AF7900F34121 /* ConeAction.cpp in Sources */,
 				C30B3A2A37F8F32EE7318718 /* ofxUILabelToggle.cpp in Sources */,
 				9A83D1B3FB64456BC907667F /* ofxUIMinimalSlider.cpp in Sources */,
+				A59C9E171943AF7900F34121 /* PlaneAction.cpp in Sources */,
 				F440B307990F8F5CE40B9111 /* ofxUIMovingGraph.cpp in Sources */,
 				222C3AB10FA3158602718602 /* ofxUIMultiImageButton.cpp in Sources */,
 				F9C20834354ACC8337320B8C /* ofxUIMultiImageToggle.cpp in Sources */,
@@ -762,9 +863,12 @@
 				59C5F2F5D7254C33C00F97CB /* ofxUIRectangle.cpp in Sources */,
 				FE0F1DB69ACCD163E9DA2A15 /* ofxUIRotarySlider.cpp in Sources */,
 				43BADBB2FE0F17D34B57A705 /* ofxUIScrollableCanvas.cpp in Sources */,
+				A59C9E151943AF7900F34121 /* IcosphereAction.cpp in Sources */,
+				A59C9E161943AF7900F34121 /* LineAction.cpp in Sources */,
 				740A58CBFDFE578C83A349AF /* ofxUISlider.cpp in Sources */,
 				ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */,
 				BFEFCE32DAFE10A8EB519F6C /* ofxUISpacer.cpp in Sources */,
+				A59C9E1D1943AF7900F34121 /* Rules.cpp in Sources */,
 				52AFF80A869790144ACCC9BA /* ofxUISpectrum.cpp in Sources */,
 				1DAAC3FB4B98B08AE63F4687 /* ofxUISuperCanvas.cpp in Sources */,
 				5AE95ADB5549701423B6DA48 /* ofxUITabBar.cpp in Sources */,
@@ -773,6 +877,7 @@
 				04C82720B149CE576B8CBB06 /* ofxUIToggle.cpp in Sources */,
 				E3A1109F67D711D6C256031E /* ofxUIToggleMatrix.cpp in Sources */,
 				60012C723B05938A3D388335 /* ofxUIValuePlotter.cpp in Sources */,
+				A59C9E181943AF7900F34121 /* PointAction.cpp in Sources */,
 				AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */,
 				82845E1F8C90E1F5A99D9868 /* ofxUIWidget.cpp in Sources */,
 				CE5D89B9893EAA12F511DCAC /* ofxUIWidgetWithLabel.cpp in Sources */,

@@ -112,10 +112,10 @@ void WeavingPoint::onReleaseOutside(int x, int y, int button) {
 
 void WeavingPoint::keyPressed(int key) {
     //printf("MyTestObject::keyPressed(key: %i)\n", key);
-    if (key == 'v'){
+    if (key == 'V'){
         bVisible = !bVisible;
     }
-    else if (key == 'd'){
+    else if (key == 'D'){
         verbose = !verbose;
     }
 }
