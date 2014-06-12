@@ -5,7 +5,10 @@
 
 #include "ofxBounce.h"
 #include "ofxRipples.h"
+#include "ofxBlur.h"
 #include "ofxRules.h"
+
+#include "ofxUI.h"
 
 class testApp : public ofBaseApp{
 
@@ -24,16 +27,31 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+    
+    void RippleSetup();
+    void RippleUpdate();
+    void RippleDraw();
+    
+    void RulesSetup();
+    
+    ofxUICanvas *gui;
+	void guiEvent(ofxUIEventArgs &e);
+    void setupGUI(void);
+    string SelectedWeavingChar;
+    
     vector <WeavingPoint*> Points;
     vector <ofPoint*> upRow, downRow, leftColumn, rightColumn;
     
     
     ofxRipples  rip;
     ofxBounce   bounce;
+    ofxBlur     blur;
     
     
     Branch::Ptr createBranch(Rule::Ptr rule);
     ofEasyCam cam;
     ofxRules rules;
+    
+    bool bRipple, bRules;
 		
 };

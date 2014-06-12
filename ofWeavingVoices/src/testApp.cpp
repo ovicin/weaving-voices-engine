@@ -1,5 +1,12 @@
 #include "testApp.h"
 
+
+#define _startX 250
+#define _startY 30
+#define _width 600
+#define _height 400
+#define _weavingPontsDist 100
+
 //--------------------------------------------------------------
 void testApp::setup(){
     ofSetFrameRate(60);
@@ -12,94 +19,138 @@ void testApp::setup(){
     cam.setDistance(80);
     cam.lookAt(ofVec3f(0, 20, 0));
 
-    rip.allocate(800,600);
-    bounce.allocate(800,600);
+    RippleSetup();
     
     int i,j;
-    for(i=0;i<8;i++)
-        for(j=0;j<4;j++)
+    for(i=0;i<(_width / _weavingPontsDist);i++)
+        for(j=0;j<(_height / _weavingPontsDist);j++)
         {
             //ofCircle(200+(i*100), 60+(j*100), 0, 5);
-            Points.push_back(new WeavingPoint(200+(i*100), 60+(j*100),'a'));
+            Points.push_back(new WeavingPoint((_startX+(_weavingPontsDist/2))+(i*_weavingPontsDist), (_startY*2)+(j*_weavingPontsDist),'a'));
         }
     
+    RulesSetup();
     
-    rules.setMaxDepth(300);
-    rules.getMeshRef().setMode(OF_PRIMITIVE_LINES);
+    bRipple = false;
+    bRules = false;
     
+    setupGUI();
+    
+    
+    blur.allocate(_startX+800,600);
+    
+}
+
+void testApp::setupGUI(void){
+    gui = new ofxUICanvas();
+    gui->addLabel("EFFECTS");
+    gui->addToggle("Ripples", false);
+    gui->addToggle("Rules1", false);
+    gui->addSpacer();
+    gui->addLabel("CONTROLS");
+    gui->addToggle("Border", true);
+    gui->addToggle("WeavingPoints", true);
+    gui->addLabel("WeavingChr",OFX_UI_FONT_SMALL);
+    gui->addTextInput("WeavingChar", SelectedWeavingChar);
+    gui->addSpacer();
+    gui->autoSizeToFitWidgets();
+    ofAddListener(gui->newGUIEvent,this,&testApp::guiEvent);
+}
+
+void testApp::guiEvent(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+	/*int kind = e.widget->getKind();
+    
+    if(kind == OFX_UI_WIDGET_BUTTON)
     {
-        Rule::Ptr rule = rules.addRule("test", 50);
-        
-        LineAction::Ptr action = rule->addAction<LineAction>("test");
-        action->translate(0, 0.1, 0);
-        action->rotate(1, 0, 0);
-        action->setNextRuleName("test");
+        ofxUIButton *button = (ofxUIButton *) e.widget;
+        cout << name << "\t value: " << button->getValue() << endl;
     }
-    
+    else if(kind == OFX_UI_WIDGET_TOGGLE)
     {
-        Rule::Ptr rule = rules.addRule("test", 50);
-        
-        LineAction::Ptr action = rule->addAction<LineAction>("test");
-        action->translate(0, 0.1, 0);
-        action->rotate(0, 20, 0);
-        action->setNextRuleName("test");
+        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
+        cout << name << "\t value: " << toggle->getValue() << endl;
     }
-    
+    else if(kind == OFX_UI_WIDGET_IMAGEBUTTON)
     {
-        Rule::Ptr rule = rules.addRule("test", 100);
-        
-        LineAction::Ptr action = rule->addAction<LineAction>("test");
-        action->translate(0, 0.4, 0);
-        action->rotate(1, 0, -2);
-        action->setNextRuleName("test");
+        ofxUIImageButton *button = (ofxUIImageButton *) e.widget;
+        cout << name << "\t value: " << button->getValue() << endl;
     }
-    
+    else if(kind == OFX_UI_WIDGET_IMAGETOGGLE)
     {
-        Rule::Ptr rule = rules.addRule("test", 6);
-        
-        TransformAction::Ptr left = rule->addAction<TransformAction>("test");
-        left->rotate(0, 180, 0);
-        left->setNextRuleName("test");
-        
-        TransformAction::Ptr right = rule->addAction<TransformAction>("test");
-        right->rotate(15, 0, 0);
-        right->setNextRuleName("test");
+        ofxUIImageToggle *toggle = (ofxUIImageToggle *) e.widget;
+        cout << name << "\t value: " << toggle->getValue() << endl;
     }
-    
-    rules.setStartRule("test");
-    rules.start();
-    
+	else if(kind == OFX_UI_WIDGET_LABELBUTTON)
+    {
+        ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
+        cout << name << "\t value: " << button->getValue() << endl;
+    }
+    else if(kind == OFX_UI_WIDGET_LABELTOGGLE)
+    {
+        ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
+        cout << name << "\t value: " << toggle->getValue() << endl;
+    }
+	else if(name == "B1")
+	{
+        ofxUIButton *button = (ofxUIButton *) e.widget;
+        cout << "value: " << button->getValue() << endl;
+	}
+     */
+    if(name == "Ripples")
+	{
+        ofxUIButton *button = (ofxUIButton *) e.widget;
+        cout << "value: " << button->getValue() << endl;
+        bRipple = button->getValue();
+	}
+    else if(name == "Rules1")
+	{
+        ofxUIButton *button = (ofxUIButton *) e.widget;
+        cout << "value: " << button->getValue() << endl;
+        bRules = button->getValue();
+	}
+    else if(name == "WeavingChar"){
+        ofxUITextInput *text = (ofxUITextInput *) e.widget;
+        cout << "value: " << text->getTextString() << endl;
+        SelectedWeavingChar = text->getTextString();
+        text->setAutoClear(false);
+        
+    }
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    rip.begin();
-    ofFill();
-    ofSetColor(ofNoise( ofGetFrameNum() ) * 255 * 5, 255);
-    ofEllipse(mouseX,mouseY, 10,10);
-    rip.end();
-    rip.update();
+
+    if (bRipple)
+        RippleUpdate();
+    if (bRules)
+        rules.step();
+    blur.setFade(sin( ofGetElapsedTimef() ));
+    blur.update();
     
-    bounce << rip;
-    
-    
-    rules.step();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-    rip.draw(150,30);
-    bounce.draw(640,0);
-    
-    ofNoFill();
-    ofRect(150,30,800,400);
-    ofFill();
-    
-    cam.begin();
-    rules.draw();
-    cam.end();
+    blur.draw();
    
+    if (bRipple)
+        RippleDraw();
+    
+     blur.begin();
+    ofNoFill();
+    ofRect(_startX,_startY,_width,_height);
+    ofFill();
+    blur.end();
+    
+    
+    if (bRules){
+        cam.begin();
+        rules.draw();
+        cam.end();
+    }
 }
 
 //--------------------------------------------------------------
@@ -153,4 +204,75 @@ void testApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void testApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void testApp::RulesSetup(){
+    rules.setMaxDepth(300);
+    rules.getMeshRef().setMode(OF_PRIMITIVE_LINES);
+    
+    {
+        Rule::Ptr rule = rules.addRule("test", 50);
+        
+        LineAction::Ptr action = rule->addAction<LineAction>("test");
+        action->translate(0, 0.1, 0);
+        action->rotate(1, 0, 0);
+        action->setNextRuleName("test");
+    }
+    
+    {
+        Rule::Ptr rule = rules.addRule("test", 50);
+        
+        LineAction::Ptr action = rule->addAction<LineAction>("test");
+        action->translate(0, 0.1, 0);
+        action->rotate(0, 20, 0);
+        action->setNextRuleName("test");
+    }
+    
+    {
+        Rule::Ptr rule = rules.addRule("test", 100);
+        
+        LineAction::Ptr action = rule->addAction<LineAction>("test");
+        action->translate(0, 0.4, 0);
+        action->rotate(1, 0, -2);
+        action->setNextRuleName("test");
+    }
+    
+    {
+        Rule::Ptr rule = rules.addRule("test", 6);
+        
+        TransformAction::Ptr left = rule->addAction<TransformAction>("test");
+        left->rotate(0, 180, 0);
+        left->setNextRuleName("test");
+        
+        TransformAction::Ptr right = rule->addAction<TransformAction>("test");
+        right->rotate(15, 0, 0);
+        right->setNextRuleName("test");
+    }
+    
+    rules.setStartRule("test");
+    rules.start();
+
+}
+
+
+void testApp::RippleSetup(){
+    rip.allocate(800,600);
+    bounce.allocate(800,600);
+    
+}
+void testApp::RippleUpdate(){
+    rip.begin();
+    ofFill();
+    ofSetColor(ofNoise( ofGetFrameNum() ) * 255 * 5, 255);
+    ofEllipse(mouseX,mouseY, 10,10);
+    rip.end();
+    rip.update();
+    
+    bounce << rip;
+    
+}
+void testApp::RippleDraw(){
+    rip.draw(150,30);
+    bounce.draw(640,0);
+    
 }

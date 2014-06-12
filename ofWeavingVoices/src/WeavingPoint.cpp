@@ -98,6 +98,7 @@ void WeavingPoint::onPress(int x, int y, int button) {
     saveX = x - this->x;
     saveY = y - this->y;
     onPressed = true;
+    
 }
 
 void WeavingPoint::onRelease(int x, int y, int button) {
