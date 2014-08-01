@@ -35,9 +35,12 @@ void testApp::setup(){
     bRules = false;
     
     setupGUI();
-    
+    selectedWeavingPoint = NULL;
     
     blur.allocate(_startX+800,600);
+    
+    ofAddListener(eventSelectedWeavingPoint::onSelectedWeavingPoint,this, &testApp::OnSelectedWeavingPoint);
+
     
 }
 
@@ -51,12 +54,21 @@ void testApp::setupGUI(void){
     gui->addToggle("Border", true);
     gui->addToggle("WeavingPoints", true);
     gui->addLabel("WeavingChr",OFX_UI_FONT_SMALL);
-    gui->addTextInput("WeavingChar", SelectedWeavingChar);
+    InputCharText = new ofxUITextInput("WeavingChar", SelectedWeavingChar,50);
+    //gui->addTextInput("WeavingChar", SelectedWeavingChar);
+    gui->addWidgetDown(InputCharText);
     gui->addSpacer();
     gui->autoSizeToFitWidgets();
     ofAddListener(gui->newGUIEvent,this,&testApp::guiEvent);
 }
 
+void testApp::OnSelectedWeavingPoint(eventSelectedWeavingPoint & args){
+    selectedWeavingPoint = args.pWeavingPoint;
+    SelectedWeavingChar = selectedWeavingPoint->trigerringChar;
+    InputCharText->setTextString(SelectedWeavingChar);
+    
+    
+} 
 void testApp::guiEvent(ofxUIEventArgs &e)
 {
 	string name = e.widget->getName();
@@ -114,6 +126,7 @@ void testApp::guiEvent(ofxUIEventArgs &e)
         ofxUITextInput *text = (ofxUITextInput *) e.widget;
         cout << "value: " << text->getTextString() << endl;
         SelectedWeavingChar = text->getTextString();
+        selectedWeavingPoint->trigerringChar = SelectedWeavingChar[0];
         text->setAutoClear(false);
         
     }
@@ -122,6 +135,8 @@ void testApp::guiEvent(ofxUIEventArgs &e)
 
 //--------------------------------------------------------------
 void testApp::update(){
+    
+    gui->update();
 
     if (bRipple)
         RippleUpdate();

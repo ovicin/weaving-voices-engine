@@ -33,6 +33,8 @@ public:
     char trigerringChar;
 private:
     
+    void setupGUI(void);
+    
     enum {
         WEAVING_POINT_WIDTH = 15,
         WEAVING_POINT_HEIGHT = 15
@@ -42,6 +44,9 @@ private:
     bool bVisible;
     bool isDraggedOut;
 	bool onPressed;
+    
+
+    
     
 };
 

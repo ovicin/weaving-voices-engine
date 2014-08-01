@@ -51,6 +51,7 @@
 		A59C9E1C1943AF7900F34121 /* Rule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0C1943AF7900F34121 /* Rule.cpp */; };
 		A59C9E1D1943AF7900F34121 /* Rules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0E1943AF7900F34121 /* Rules.cpp */; };
 		A59C9E1E1943AF7900F34121 /* RuleSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E101943AF7900F34121 /* RuleSet.cpp */; };
+		A5B73AC419858C6F0047A055 /* eventSelectedWeavingPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */; };
 		ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5613D5D24B00D8AD909F7E6A /* ofxUISortableList.cpp */; };
 		AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345327AA463407B3DADBADE /* ofxUIWaveform.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -246,6 +247,8 @@
 		A59C9E0F1943AF7900F34121 /* Rules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rules.h; sourceTree = "<group>"; };
 		A59C9E101943AF7900F34121 /* RuleSet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RuleSet.cpp; sourceTree = "<group>"; };
 		A59C9E111943AF7900F34121 /* RuleSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleSet.h; sourceTree = "<group>"; };
+		A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventSelectedWeavingPoint.cpp; sourceTree = "<group>"; };
+		A5B73AC319858C6F0047A055 /* eventSelectedWeavingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventSelectedWeavingPoint.h; sourceTree = "<group>"; };
 		A64B8AA7481267CD4A76C16B /* ofxUITabBar.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUITabBar.cpp; path = ../../../addons/ofxUI/src/ofxUITabBar.cpp; sourceTree = SOURCE_ROOT; };
 		A8896AC3BECAAA504E3828F4 /* ofxUIEventArgs.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIEventArgs.cpp; path = ../../../addons/ofxUI/src/ofxUIEventArgs.cpp; sourceTree = SOURCE_ROOT; };
 		ACE80EF2FE2F3D0A2ED1A824 /* ofxTint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTint.h; path = ../../../addons/ofxFX/src/generative/ofxTint.h; sourceTree = SOURCE_ROOT; };
@@ -704,6 +707,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
 				A59570AE19411B1400539D7A /* WeavingPoint.cpp */,
 				A59570AF19411B1400539D7A /* WeavingPoint.h */,
+				A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */,
+				A5B73AC319858C6F0047A055 /* eventSelectedWeavingPoint.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -862,6 +867,7 @@
 				1587708E3CAC72997E43504E /* ofxUIRangeSlider.cpp in Sources */,
 				59C5F2F5D7254C33C00F97CB /* ofxUIRectangle.cpp in Sources */,
 				FE0F1DB69ACCD163E9DA2A15 /* ofxUIRotarySlider.cpp in Sources */,
+				A5B73AC419858C6F0047A055 /* eventSelectedWeavingPoint.cpp in Sources */,
 				43BADBB2FE0F17D34B57A705 /* ofxUIScrollableCanvas.cpp in Sources */,
 				A59C9E151943AF7900F34121 /* IcosphereAction.cpp in Sources */,
 				A59C9E161943AF7900F34121 /* LineAction.cpp in Sources */,

@@ -7,6 +7,7 @@
 #include "ofxRipples.h"
 #include "ofxBlur.h"
 #include "ofxRules.h"
+#include "eventSelectedWeavingPoint.h"
 
 #include "ofxUI.h"
 
@@ -27,6 +28,8 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+    void OnSelectedWeavingPoint(eventSelectedWeavingPoint & args);
+    
     
     void RippleSetup();
     void RippleUpdate();
@@ -35,6 +38,7 @@ class testApp : public ofBaseApp{
     void RulesSetup();
     
     ofxUICanvas *gui;
+    ofxUITextInput *InputCharText;
 	void guiEvent(ofxUIEventArgs &e);
     void setupGUI(void);
     string SelectedWeavingChar;
@@ -42,6 +46,7 @@ class testApp : public ofBaseApp{
     vector <WeavingPoint*> Points;
     vector <ofPoint*> upRow, downRow, leftColumn, rightColumn;
     
+    WeavingPoint *selectedWeavingPoint;
     
     ofxRipples  rip;
     ofxBounce   bounce;

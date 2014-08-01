@@ -7,6 +7,7 @@
 //
 
 #include "WeavingPoint.h"
+#include "eventSelectedWeavingPoint.h"
 
 #define		IDLE_COLOR		0xFFFFFF
 #define		OVER_COLOR		0x00FF00
@@ -98,6 +99,10 @@ void WeavingPoint::onPress(int x, int y, int button) {
     saveX = x - this->x;
     saveY = y - this->y;
     onPressed = true;
+    
+    eventSelectedWeavingPoint selectedWeavingPoint;
+	selectedWeavingPoint.pWeavingPoint = this;
+	ofNotifyEvent(eventSelectedWeavingPoint::onSelectedWeavingPoint, selectedWeavingPoint);
     
 }
 
