@@ -9,15 +9,17 @@ This document is a draft on the software architecture for the Weaving Voices Eng
 
 The system takes a distributed approach the **Model View Controller** architecure. 
 
-The system is built of to **multiple agents** refered as **services**. Services can be either Views or Controllers. Each service have an **internal model** which keeps its attributes in sync with the other services using a **subscription** based model.
+The system is built of to **multiple agents** refered as **services**. Services can be either **Views** or **Controllers**. Each service have an **internal modular Model** which keeps its attributes in sync with the other services using a **subscription** based approach.
 
 The subscription based model is based around a **publisher** which based on an **attributes dictionary** provides the services with the available attributes on the system they can **subscribe** to.
 
-On the current implementation the publisher serves also a publishing server pushing the notifications to the subscribed services. This is a functionalitity that can be later done distributely while keeping the publisher just as an attributes dictionary.
+On the current implementation the publisher serves also as a publishing server pushing the notifications to the subscribed services. This is a functionalitity that can be later done distributely while keeping the publisher just as an attributes dictionary.
 
 `Notes: Rename Services to something else?`
 
-###Attributes dictionary
+###Model
+
+####Attributes dictionary
 
 This Attributed dictionary defines the main **data model** used:
 
