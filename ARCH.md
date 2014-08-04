@@ -3,17 +3,17 @@ Architecture
 
 `DRAFT`
 
-This document is a draft on the software architecture for the Weaving Voices Engine. The design emphazise a multi-peer but yet simple and flexible design.
+This document is a draft on the software architecture for the Weaving Voices Engine. The design emphasize a multi-peer but yet simple and flexible design.
 
-#### MWC Architecuture
+#### MWC Architecture
 
-The system takes a distributed approach to the **Model View Controller** architecure. 
+The system takes a distributed approach to the **Model View Controller** architecture. 
 
-The system is built of **multiple agents** refered as **services**. Services can be either **Views** or **Controllers**. Each service have an **internal modular Model** which keeps its attributes in sync with the other services using a **subscription** based approach.
+The system is built of **multiple agents** referred as **services**. Services can be either **Views** or **Controllers**. Each service have an **internal modular Model** which keeps its attributes in sync with the other services using a **subscription** based approach.
 
 The subscription based model is based around a **publisher** which based on an **attributes dictionary** provides the services with the available attributes on the system they can **subscribe** to.
 
-On the current implementation the publisher serves also as a publishing server pushing the notifications to the subscribed services. This is a functionalitity that can be later done distributely while keeping the publisher just as an attributes dictionary.
+On the current implementation the publisher serves also as a publishing server pushing the notifications to the subscribed services. This is a functionality that can be later done distributively while keeping the publisher just as an attributes dictionary.
 
 `Notes: Rename Services to something else?`
 
@@ -41,7 +41,7 @@ Services are instances running some logic or view, they communicate using a subs
 #####Attributes actions:
 
 
-* **PUT:** Updates an attribute locally and remotley.
+* **PUT:** Updates an attribute locally and remotely.
 
 	* Properties:
 		* Name
@@ -51,7 +51,7 @@ Services are instances running some logic or view, they communicate using a subs
 		* Update the **Arbiter attributes dictionary**
 		* Update the **Local attributes dictionary**
 
-* **SUBSCRIBE:** Subscribes to an attribute locally or remotley.
+* **SUBSCRIBE:** Subscribes to an attribute locally or remotely.
 
 	* Properties:
 		* Attribute Name
@@ -74,4 +74,4 @@ The publisher is the subscription manager and updates pusher.
 		* An update on the **Arbiter attributes dictionary**.
 	
 	* Actions:
-		* Pushes the updates on the **Arbiter attributes dictionary** to the **Subscribers** for an specific **Attribute**.
+		* Pushes the updates on the **Arbiter attributes dictionary** to the **Subscribers** for a specific **Attribute**.
