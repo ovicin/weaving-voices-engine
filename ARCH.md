@@ -1,9 +1,7 @@
-Weaving Voices Engine
-=====================
+Architecture
+============
 
 `DRAFT`
-
-##Architecture
 
 This document is a draft on the software architecture for the Weaving Voices Engine. The design emphazise a multi-peer but yet simple and flexible design.
 
@@ -39,7 +37,7 @@ Services are instances running some logic or view, they communicate using a subs
 		* Update the **Arbiter attributes dictionary**
 		* Update the **Local attributes dictionary**
 
-* **SUBSCRIBERS:** Subscribes to an attribute locally or remotley.
+* **SUBSCRIBE:** Subscribes to an attribute locally or remotley.
 
 	* Properties:
 		* Attribute Name
