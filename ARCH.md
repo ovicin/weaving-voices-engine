@@ -30,7 +30,7 @@ This Attributed dictionary defines the main **data model** used:
 * Net Adress
 	* Current network location for the **service** (IP Address and Port)
 * Subscribers 
-	* Collection of NetAdress of for the **services** registered to the **attribute**.
+	* Collection of NetAdresses of the **services** registered to the **attribute**.
 
 ###Actors
 
