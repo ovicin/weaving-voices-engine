@@ -58,7 +58,7 @@ Services are instances running some logic or view, they communicate using a subs
 	
 	* Actions:
 		* Updates the **Subscribers** for a particular **Name** on the **Arbiter attributes dictionary** 
-		* Return the current **Value** for the particular **Name**
+		* Return the current **Attribute**, including the **latest value** for the particular **Name**
 
 
 
