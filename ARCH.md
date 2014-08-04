@@ -7,7 +7,7 @@ This document is a draft on the software architecture for the Weaving Voices Eng
 
 #### MWC Architecuture
 
-The system takes a distributed approach the **Model View Controller** architecure. 
+The system takes a distributed approach to the **Model View Controller** architecure. 
 
 The system is built of to **multiple agents** refered as **services**. Services can be either **Views** or **Controllers**. Each service have an **internal modular Model** which keeps its attributes in sync with the other services using a **subscription** based approach.
 
