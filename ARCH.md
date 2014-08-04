@@ -1,6 +1,8 @@
 Weaving Voices Engine
 =====================
 
+`DRAFT`
+
 ##Architecture
 
 This document is a draft on the software architecture for the Weaving Voices Engine. The design emphazise a multi-peer but yet simple and flexible design.
@@ -10,9 +12,13 @@ This document is a draft on the software architecture for the Weaving Voices Eng
 This Attributed dictionary defines the main **data model** used:
 
 * Name
+	* Unique identifier of an **attribute** offered by a **service**.
 * Value
+	* Current value of the **attribute**.
 * Net Adress
-* Subscribers
+	* Current network location for the **service** (IP Address and Port)
+* Subscribers 
+	* Collection of NetAdress of for the **services** registered to the **attribute**.
 
 ###Actors
 
@@ -23,24 +29,24 @@ Services are instances running some logic or view, they communicate using a subs
 #####Attributes actions:
 
 
-	* **PUT:** Updates an attribute locally and remotley.
- 
-		* Properties:
-			* Name
-			* Value
-		
-		* Actions:
-			* Update the **Arbiter attributes dictionary**
-			* Update the **Local attributes dictionary**
+* **PUT:** Updates an attribute locally and remotley.
+
+	* Properties:
+		* Name
+		* Value
 	
-	* **SUBSCRIBERS:** Subscribes to an attribute locally or remotley.
- 
-		* Properties:
-			* Attribute Name
-		
-		* Actions:
-			* Updates the **Subscribers** for a particular **Name** on the **Arbiter attributes dictionary** 
-			* Return the current **Value** for the particular **Name**
+	* Actions:
+		* Update the **Arbiter attributes dictionary**
+		* Update the **Local attributes dictionary**
+
+* **SUBSCRIBERS:** Subscribes to an attribute locally or remotley.
+
+	* Properties:
+		* Attribute Name
+	
+	* Actions:
+		* Updates the **Subscribers** for a particular **Name** on the **Arbiter attributes dictionary** 
+		* Return the current **Value** for the particular **Name**
 
 
 
@@ -50,10 +56,10 @@ The publisher is the subscription manager and updates pusher.
 
 #####Attributes actions:
 
-	* **PUBLISH:** Pushes updates on the **Arbiter attributes dictionary** to the registered **Services**.
- 			
-		* Trigger:
-			* An update on the **Arbiter attributes dictionary**.
-		
-		* Actions:
-			* Pushes the updates on the **Arbiter attributes dictionary** to the **Subscribers** for an specific **Attribute**.
+* **PUBLISH:** Pushes updates on the **Arbiter attributes dictionary** to the registered **Services**.
+			
+	* Trigger:
+		* An update on the **Arbiter attributes dictionary**.
+	
+	* Actions:
+		* Pushes the updates on the **Arbiter attributes dictionary** to the **Subscribers** for an specific **Attribute**.
