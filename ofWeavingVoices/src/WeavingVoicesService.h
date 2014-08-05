@@ -31,7 +31,14 @@ public:
     
      Update the Arbiter attributes dictionary
      Update the Local attributes dictionary
+     
+     SENDS OSC Message Format
+     
+        /put /AttributeName val
+     
+     
      */
+    
     void put(WeavingVoicesAttribute &attribute);
     
     /*SUBSCRIBE: Subscribes to an attribute locally or remotely.
@@ -43,9 +50,30 @@ public:
     
      Updates the Subscribers for a particular Name on the Arbiter attributes dictionary
             Return the current Value for the particular Name
+     
+     SENDS OSC Message Format
+        /subscribe /AttributeName /ip /port
      */
     
-    WeavingVoicesAttribute subscribe();
+    void subscribe(WeavingVoicesAttribute &attribute);
+    
+    /*
+     SENDS OSC Message Format
+     /subscribe /AttributeName /ip /port
+     
+     */
+    
+    void unsubscribe(WeavingVoicesAttribute &attribute);
+    
+    
+    /*
+     
+     READS OSC Message Format
+     /update /attribute /value /time /address
+     
+     receiving of the attributes should be implemented here
+     */
+    void update();
     
 private:
     

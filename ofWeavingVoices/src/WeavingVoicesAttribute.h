@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "ofMain.h"
 
 class WeavingVoicesAttribute{
     /*
@@ -29,4 +30,16 @@ class WeavingVoicesAttribute{
     */
     
     string NetAddress;
+    
+    
+    /*
+     Collection of NetAddresses of the applications
+     
+     */
+    vector <string> Subscribers;
+    
+    /*
+     time in seconds when the last update was issued (The timestamp of the OSC message that was update)
+     */
+    string Time;
 };

@@ -104,6 +104,8 @@ void WeavingPoint::onPress(int x, int y, int button) {
 	selectedWeavingPoint.pWeavingPoint = this;
 	ofNotifyEvent(eventSelectedWeavingPoint::onSelectedWeavingPoint, selectedWeavingPoint);
     
+    cout << "Point Selected " + ofToString( trigerringChar )<< endl;
+    
 }
 
 void WeavingPoint::onRelease(int x, int y, int button) {

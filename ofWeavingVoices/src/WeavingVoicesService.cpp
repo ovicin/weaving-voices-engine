@@ -10,12 +10,17 @@
 
 WeavingVoicesService::WeavingVoicesService(){
     
+    
 }
 
 void WeavingVoicesService::put(WeavingVoicesAttribute &attribute){
     
 }
 
-WeavingVoicesAttribute WeavingVoicesService::subscribe(){
+void WeavingVoicesService::subscribe(WeavingVoicesAttribute &attribute){
+    
+}
+
+void WeavingVoicesService::unsubscribe(WeavingVoicesAttribute &attribute){
     
 }

@@ -9,7 +9,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "WeavingVoicesAttribute"
+#include "WeavingVoicesAttribute.h"
 
 class eventWeavingVoicesAttribute : public ofEventArgs{
 public:
