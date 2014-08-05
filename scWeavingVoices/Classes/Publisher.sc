@@ -144,6 +144,10 @@ Subscriber : NetAddr {
 	subscribe { | attribute | this.sendMsg(subscribeMessage, attribute) }
 	unsubscribe { | attribute | this.sendMsg(unsubscribeMessage, attribute) }
 
+	onAttributeChange { | listener, attributeName, action |
+		listener.addNotifier(this, attributeName, action);
+	}
+
 	enable { responder.enable }
 	disable { responder.disable }
 }
