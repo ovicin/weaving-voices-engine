@@ -21,10 +21,12 @@ Publisher  {
 	*disable { this.default.disable }
 
 	enable { 
-		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable; }
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable;
+	}
 
 	disable { 
-		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable; }
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable;
+	}
 
 	*default { ^this.new }
 
@@ -35,7 +37,7 @@ Publisher  {
 	initPublisher {
 		putResponder = OSCFunc({ | msg, time, senderAddr |
 			// attribute ... data
-			this.put(msg[1], msg[2..], time, senderAddr);
+			this.put(msg[1], msg[2..], senderAddr);
 		}, this.class.putMessage(name));
 		subscribeResponder = OSCFunc({ | msg |
 			// attribute, ip, port
@@ -60,9 +62,9 @@ Publisher  {
 		^('/unsubscribe' ++ '/' ++ publisherName).asSymbol
 	}
 
-	put { | attributeName, data, time, senderAddr |
+	put { | attributeName, data, senderAddr |
 		this.getAttribute(attributeName)
-		.setData(data, time, senderAddr)
+		.setData(data, senderAddr)
 		.broadcast;
 	}
 
@@ -116,20 +118,21 @@ Subscriber : NetAddr {
 		responder = OSCFunc({ | msg, time, address |
 			// for updates received from the Publisher
 			// THIS DOES NOT BROADCAST
-			this.updateAttribute(msg[1], msg[2..], time, address);
+			this.updateAttribute(msg[1], msg[2..], address);
 		}, '/update')
 	}
 
-	put { | attribute, value, time, address |
+	put { | attribute, value, address |
 		// For internal puts from the local app only
 		// THIS BROADCASTS!!!!!
-		this.updateAttribute(attribute, value, time, address ?? { NetAddr.localAddr }); // store + broadcast locally
+		this.updateAttribute(attribute, value, address ?? { NetAddr.localAddr }); // store + broadcast locally
 		this.sendMsg(putMessage, attribute, *value);  // broadcast on network
 	}
 
-	updateAttribute { | attributeName, value, time, address |
-		var attribute;
+	updateAttribute { | attributeName, value, address |
+		var attribute, time;
 		attribute = attributes[attributeName];
+		time = Date.getDate.rawSeconds;
 		attribute ?? {
 			attribute = Attribute(name, value, time, address);
 			attributes[name] = attribute;
@@ -151,10 +154,10 @@ Attribute {
 	var <name, <sender, <data, <time, <subscribers;
 
 	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, time ?? { Process.elapsedTime }, Set());
+		^this.newCopyArgs(name, sender, data, time ?? { Date.getDate.rawSeconds }, Set());
 	}
 
-	setData { | argData argTime senderAddr |
+	setData { | argData senderAddr |
 		data = argData;
 		// time = argTime ?? { Process.elapsedTime };
 		senderAddr ?? { senderAddr = NetAddr.localAddr };
