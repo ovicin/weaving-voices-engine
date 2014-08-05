@@ -7,3 +7,4 @@ Installation/performance project.
 
 Part of EASTN project on tangibility.  
 
+SuperCollider
