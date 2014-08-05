@@ -14,13 +14,17 @@ Publisher  {
 	/* Broadcast changes in any attribute of the model to all nodes that have subscribed 
 		to that attribute. */
 	var <name;
-	var <putResponder, <subscribeResponder;
+	var <putResponder, <subscribeResponder, <unsubscribeResponder;
 	var <attributes;
 
 	*enable { this.default.enable }
 	*disable { this.default.disable }
-	enable { [putResponder, subscribeResponder] do: _.enable; }
-	disable { [putResponder, subscribeResponder] do: _.disable; }
+
+	enable { 
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable; }
+
+	disable { 
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable; }
 
 	*default { ^this.new }
 
@@ -32,34 +36,54 @@ Publisher  {
 		putResponder = OSCFunc({ | msg, time, senderAddr |
 			// attribute ... data
 			this.put(msg[1], msg[2..], time, senderAddr);
-		}, ('/put' ++ '/' ++ name).asSymbol);
+		}, this.class.putMessage(name));
 		subscribeResponder = OSCFunc({ | msg |
 			// attribute, ip, port
-			this.subscribe(msg[1], msg[2], msg[3])
-		}, ('/subscribe' ++ '/' ++ name).asSymbol);
+			this.subscribe(msg[1], NetAddr(msg[2], msg[3]))
+		}, this.class.subscribeMessage(name));
+		unsubscribeResponder = OSCFunc({ | msg |
+			// attribute, ip, port
+			this.unsubscribe(msg[1], NetAddr(msg[2], msg[3]))
+		}, this.class.unsubscribeMessage(name));
 		attributes = IdentityDictionary();
 	}
 
-	publish { | attributeName, data, time, senderAddr |
+	*putMessage { | publisherName = 'default' |
+		^('/put' ++ '/' ++ publisherName).asSymbol
+	}
+
+	*subscribeMessage { | publisherName = 'default' |
+		^('/subscribe' ++ '/' ++ publisherName).asSymbol
+	}
+
+	*unsubscribeMessage { | publisherName = 'default' |
+		^('/unsubscribe' ++ '/' ++ publisherName).asSymbol
+	}
+
+	put { | attributeName, data, time, senderAddr |
+		this.getAttribute(attributeName)
+		.setData(data, time, senderAddr)
+		.broadcast;
+	}
+
+	getAttribute { | attributeName |
 		var attribute;
 		attribute = attributes[attributeName];
 		if (attribute.isNil) {
-			attribute = Attribute(attributeName, senderAddr);
+			attribute = Attribute(attributeName);
 			attributes[attributeName] = attribute;
-		}{
-			if (attribute.address != senderAddr) {
-				attribute.changeSender(senderAddr);
-			}
 		};
-		attribute.setData(data, time);
+		^attribute;
 	}
 
-	addSubscriber { | attributeName subscriberAddress |
-		
+	subscribe { | attributeName subscriberAddress |
+		this.getAttribute(attributeName).addSubscriber(subscriberAddress);
 	}
 
-	removeSubscriber { | attributeName subscriberAddress |
-
+	unsubscribe { | attributeName subscriberAddress |
+		var attribute;
+		attribute = attributes[attributeName];
+		attribute !? { attribute.removeSubscriber(subscriberAddress) }
 	}
 }
 
@@ -73,6 +97,7 @@ Subscriber : NetAddr {
 	*/
 
 	var <name;
+	var <putMessage, <subscribeMessage, <unsubscribeMessage;
 	var <attributes;
 	var <responder;
 
@@ -84,19 +109,38 @@ Subscriber : NetAddr {
 
 	initSubscriber { | argName |
 		name = argName;
+		putMessage = Publisher.putMessage(name);
+		subscribeMessage = Publisher.subscribeMessage(name);
+		unsubscribeMessage = Publisher.unsubscribeMessage(name);
 		attributes = IdentityDictionary();
-		responder = OSCFunc({ | msg |
-			this.changed(msg[1..])
+		responder = OSCFunc({ | msg, time, address |
+			// for updates received from the Publisher
+			// THIS DOES NOT BROADCAST
+			this.updateAttribute(msg[1], msg[2..], time, address);
 		}, '/update')
 	}
 
-	subscribe { | attribute |
-		this.sendMsg(attribute)
+	put { | attribute, value, time, address |
+		// For internal puts from the local app only
+		// THIS BROADCASTS!!!!!
+		this.updateAttribute(attribute, value, time, address ?? { NetAddr.localAddr }); // store + broadcast locally
+		this.sendMsg(putMessage, attribute, *value);  // broadcast on network
 	}
 
-	unSubscribe { | attribute |
-		
+	updateAttribute { | attributeName, value, time, address |
+		var attribute;
+		attribute = attributes[attributeName];
+		attribute ?? {
+			attribute = Attribute(name, value, time, address);
+			attributes[name] = attribute;
+		};
+		attribute.updateValue;
+		this.changed(attributeName, value, time, address); // broadcast on local app
 	}
+
+	subscribe { | attribute | this.sendMsg(subscribeMessage, attribute) }
+	unsubscribe { | attribute | this.sendMsg(unsubscribeMessage, attribute) }
+
 	enable { responder.enable }
 	disable { responder.disable }
 }
@@ -110,6 +154,16 @@ Attribute {
 		^this.newCopyArgs(name, sender, data, time ?? { Process.elapsedTime }, Set());
 	}
 
+	setData { | argData argTime senderAddr |
+		data = argData;
+		// time = argTime ?? { Process.elapsedTime };
+		senderAddr ?? { senderAddr = NetAddr.localAddr };
+		if (sender.notNil and: { sender != senderAddr }) {
+			this.changeSender(senderAddr);
+		};
+		//	this.broadcast;
+	}
+
 	changeSender { | newSender |
 		postf(
 			"Sender change in attribute: %.\nOld sender: %\nNew sender: %\n",
@@ -118,23 +172,7 @@ Attribute {
 		sender = newSender;
 	}
 
-	setData { | argData argTime |
-		data = argData;
-		time = argTime ?? { Process.elapsedTime };
-		this.broadcast;
-	}
-
-	broadcast {
-		subscribers do: { | s |
-			s.sendMsg('/update', name, *data);
-		}
-	}
-
-	addSubscriber { | subscriber |
-		subscribers add: subscriber;
-	}
-
-	removeSubscriber { | subscriber |
-		subscribers remove: subscriber;
-	}
+	broadcast { subscribers do: { | s | s.sendMsg('/update', name, *data); } }
+	addSubscriber { | subscriber | subscribers add: subscriber; }
+	removeSubscriber { | subscriber | subscribers remove: subscriber; }
 }
