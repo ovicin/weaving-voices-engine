@@ -25,7 +25,7 @@ Publisher  {
 	*default { ^this.new }
 
 	*new { | name = \default |
-		^NameSpace(this, name, { this.newCopyArgs(name).initPublisher });
+		^Registry(this, name, { this.newCopyArgs(name).initPublisher });
 	}
 
 	initPublisher {
@@ -77,7 +77,7 @@ Subscriber : NetAddr {
 	var <responder;
 
 	*new { | ip, port, name = 'default' |
-		^NameSpace(this, ip, port, name, {
+		^Registry(this, ip, port, name, {
 			super.new(ip, port).initSubscriber(name);
 		});
 	}
