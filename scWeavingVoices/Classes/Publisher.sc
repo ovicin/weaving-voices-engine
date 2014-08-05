@@ -21,10 +21,12 @@ Publisher  {
 	*disable { this.default.disable }
 
 	enable { 
-		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable; }
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable;
+	}
 
 	disable { 
-		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable; }
+		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable;
+	}
 
 	*default { ^this.new }
 
@@ -154,7 +156,7 @@ Attribute {
 		^this.newCopyArgs(name, sender, data, time ?? { Process.elapsedTime }, Set());
 	}
 
-	setData { | argData argTime senderAddr |
+	setData { | argData senderAddr |
 		data = argData;
 		// time = argTime ?? { Process.elapsedTime };
 		senderAddr ?? { senderAddr = NetAddr.localAddr };
