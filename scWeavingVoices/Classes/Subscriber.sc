@@ -122,7 +122,7 @@ Subscriber : IdentityDictionary {
 
 	put { | attributeName, value, broadcast = true |
 		var attribute;
-		attribute = this.prGtAttribute(attributeName);
+		attribute = this.prGetAttribute(attributeName);
 		attribute.data = value;
 		this.changed(attributeName, *value);
 		if (broadcast) { attribute.broadcast };
