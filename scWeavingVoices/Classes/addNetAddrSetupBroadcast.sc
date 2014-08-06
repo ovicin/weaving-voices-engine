@@ -13,7 +13,7 @@
 		.first.detect({ | ip |
 			ip[1] != "inet 127.0.0.1"
 		})
-		.replace("inet ", "")
+		.at(1).replace("inet ", "")
 	}
 }
 
