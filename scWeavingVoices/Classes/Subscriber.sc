@@ -69,7 +69,7 @@ Subscriber : IdentityDictionary {
 				subscribe: false
 			);
 			attribute.data = data;
-			this,changed(attributeName, *data);
+			this.changed(attributeName, *data);
 		}, updateMsg)
 
 		// var <>requestMsg = '/request';
