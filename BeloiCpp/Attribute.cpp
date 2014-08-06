@@ -10,12 +10,14 @@
 
 Attribute::Attribute(string name){
     data = NULL;
+    this->PublisherNetAddress = "";
 }
 void Attribute::setData(string PublisherNetAddress,
                         float &data,
                         float TimeStamp){
     
-    if(this->PublisherNetAddress != PublisherNetAddress){
+    if((this->PublisherNetAddress != PublisherNetAddress) &&
+       (this->PublisherNetAddress != "")){
         /* WARNING multiple publishers */
     }
     else {

@@ -10,7 +10,7 @@
 
 #include "Attribute.h"
 
-#include "PlatformSpecific.h"
+#include "PlatfomSpecific.h"
 
 
 
@@ -20,7 +20,7 @@ public:
 
     Subscriber();
     
-    void init(string ServiceName, string LocalAddress, string BroadCastAddress);
+    void init(string ServiceName);
     
     /*PUT: Updates an attribute locally and remotely.
     

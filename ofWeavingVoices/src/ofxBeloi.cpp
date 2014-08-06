@@ -7,6 +7,23 @@
 //
 
 #include "ofxBeloi.h"
+#include "PlatfomSpecific.h"
+#include "IPAddress.h"
+
+string getLocalIP(){
+    InitAddresses();
+    GetIPAddresses();
+    return ofToString( ip_names[1]);
+    
+}
+string getBroadcastIP(){
+    InitAddresses();
+    GetIPAddresses();
+    unsigned short a, b, c, d;
+    sscanf(ip_names[1], "%hu.%hu.%hu.%hu", &a, &b, &c, &d);
+    string broadcastAddr = ofToString(a) + "." + ofToString(b) + "." + ofToString(c) + ".255";
+    return broadcastAddr;
+}
 
 #if 0
 WeavingVoicesService::WeavingVoicesService(){

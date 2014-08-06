@@ -1,5 +1,5 @@
 #include "testApp.h"
-#include "IPAddress.h"
+
 
 #define _startX 250
 #define _startY 30
@@ -11,13 +11,7 @@
 void testApp::setup(){
     
     
-    InitAddresses();
-    GetIPAddresses();
-    cout <<"IP of the machine: " + ofToString( ip_names[1]) << endl;
-    unsigned short a, b, c, d;
-    sscanf(ip_names[1], "%hu.%hu.%hu.%hu", &a, &b, &c, &d);
-    string broadcastAddr = "Broadcast: " + ofToString(a) + "." + ofToString(b) + "." + ofToString(c) + ".255";
-    cout <<broadcastAddr<< endl;
+
     
     ofSetFrameRate(60);
     ofEnableAlphaBlending();

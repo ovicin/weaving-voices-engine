@@ -15,9 +15,9 @@ Subscriber::Subscriber(){
     
 }
 
-void Subscriber::init(string ServiceName, string LocalAddress, string BroadCastAddress){
-    this->LocalAddress = LocalAddress;
-    this->BroadCastAddress = BroadCastAddress;
+void Subscriber::init(string ServiceName){
+    this->LocalAddress = getLocalIP();
+    this->BroadCastAddress = getBroadcastIP();
     this->ServiceName = ServiceName;
 }
 

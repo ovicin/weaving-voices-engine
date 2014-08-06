@@ -241,7 +241,7 @@
 		A514508C19927C3C00FF4C43 /* ofxBeloi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBeloi.h; sourceTree = "<group>"; };
 		A51450911992813D00FF4C43 /* eventSelectedWeavingPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventSelectedWeavingPoint.cpp; sourceTree = "<group>"; };
 		A51450921992813D00FF4C43 /* eventSelectedWeavingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventSelectedWeavingPoint.h; sourceTree = "<group>"; };
-		A5145094199284E100FF4C43 /* PlatfomSpecific.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatfomSpecific.h; sourceTree = "<group>"; };
+		A51450951992A6BC00FF4C43 /* PlatfomSpecific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatfomSpecific.h; sourceTree = "<group>"; };
 		A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		A53B59AE19422BAD0075A8EF /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		A570F21919904EB60033CE56 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
@@ -500,11 +500,11 @@
 		A514508419927BB600FF4C43 /* BeloiCpp */ = {
 			isa = PBXGroup;
 			children = (
+				A51450951992A6BC00FF4C43 /* PlatfomSpecific.h */,
 				A514508519927BB600FF4C43 /* Attribute.cpp */,
 				A514508619927BB600FF4C43 /* Attribute.h */,
 				A514508719927BB600FF4C43 /* Subscriber.cpp */,
 				A514508819927BB600FF4C43 /* Subscriber.h */,
-				A5145094199284E100FF4C43 /* PlatfomSpecific.h */,
 			);
 			name = BeloiCpp;
 			path = ../BeloiCpp;
@@ -1196,6 +1196,20 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
+					../../../addons/ofxFX/libs,
+					../../../addons/ofxFX/src,
+					../../../addons/ofxFX/src/composers,
+					../../../addons/ofxFX/src/filters,
+					../../../addons/ofxFX/src/generative,
+					../../../addons/ofxFX/src/operations,
+					../../../addons/ofxUI/libs,
+					../../../addons/ofxUI/src,
+					src/BeloiCpp,
+				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
@@ -1282,6 +1296,20 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxXmlSettings/libs,
+					../../../addons/ofxXmlSettings/src,
+					../../../addons/ofxFX/libs,
+					../../../addons/ofxFX/src,
+					../../../addons/ofxFX/src/composers,
+					../../../addons/ofxFX/src/filters,
+					../../../addons/ofxFX/src/generative,
+					../../../addons/ofxFX/src/operations,
+					../../../addons/ofxUI/libs,
+					../../../addons/ofxUI/src,
+					src/BeloiCpp,
+				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
