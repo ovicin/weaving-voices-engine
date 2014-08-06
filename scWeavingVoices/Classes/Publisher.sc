@@ -13,9 +13,13 @@ Mon, Aug  4 2014, 11:52 EEST
 Publisher  {
 	/* Broadcast changes in any attribute of the model to all nodes that have subscribed 
 		to that attribute. */
+
+	classvar >address;
+
 	var <name;
 	var <putResponder, <subscribeResponder, <unsubscribeResponder;
 	var <attributes;
+	var <addressBroadcastRoutine;
 
 	*enable { this.default.enable }
 	*disable { this.default.disable }
@@ -24,8 +28,9 @@ Publisher  {
 		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable;
 	}
 
-	disable { 
+	disable {
 		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable;
+		addressBroadcastRoutine.stop;
 	}
 
 	*default { ^this.new }
@@ -48,6 +53,14 @@ Publisher  {
 			this.unsubscribe(msg[1], NetAddr(msg[2], msg[3]))
 		}, this.class.unsubscribeMessage(name));
 		attributes = IdentityDictionary();
+		this.startAddressBroadcast;
+	}
+
+	startAddressBroadcast {
+		addressBroadcastRoutine = {
+			format(" '%'", name).unixCmd;
+			1.wait;
+		}.fork;
 	}
 
 	*putMessage { | publisherName = 'default' |
