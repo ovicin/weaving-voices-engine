@@ -13,9 +13,13 @@ Mon, Aug  4 2014, 11:52 EEST
 Publisher  {
 	/* Broadcast changes in any attribute of the model to all nodes that have subscribed 
 		to that attribute. */
+
+	classvar >address;
+
 	var <name;
 	var <putResponder, <subscribeResponder, <unsubscribeResponder;
 	var <attributes;
+	var <addressBroadcastRoutine;
 
 	*enable { this.default.enable }
 	*disable { this.default.disable }
@@ -24,8 +28,9 @@ Publisher  {
 		[putResponder, subscribeResponder, unsubscribeResponder] do: _.enable;
 	}
 
-	disable { 
+	disable {
 		[putResponder, subscribeResponder, unsubscribeResponder] do: _.disable;
+		addressBroadcastRoutine.stop;
 	}
 
 	*default { ^this.new }
@@ -48,6 +53,14 @@ Publisher  {
 			this.unsubscribe(msg[1], NetAddr(msg[2], msg[3]))
 		}, this.class.unsubscribeMessage(name));
 		attributes = IdentityDictionary();
+		this.startAddressBroadcast;
+	}
+
+	startAddressBroadcast {
+		addressBroadcastRoutine = {
+			format(" '%'", name).unixCmd;
+			1.wait;
+		}.fork;
 	}
 
 	*putMessage { | publisherName = 'default' |
@@ -144,38 +157,15 @@ Subscriber : NetAddr {
 	subscribe { | attribute | this.sendMsg(subscribeMessage, attribute) }
 	unsubscribe { | attribute | this.sendMsg(unsubscribeMessage, attribute) }
 
+	onAttributeChange { | listener, attributeName, action |
+		listener.addNotifier(this, attributeName, action);
+	}
+
 	enable { responder.enable }
 	disable { responder.disable }
 }
 
-Attribute {
-	/*  Data item stored in any node of the network.
-		Broadcast  changes in your data to all subscribed nodes in the system */
-	var <name, <sender, <data, <time, <subscribers;
+/*
+Note: Attribute moved to Services.sc
+*/
 
-	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, time ?? { Date.getDate.rawSeconds }, Set());
-	}
-
-	setData { | argData senderAddr |
-		data = argData;
-		// time = argTime ?? { Process.elapsedTime };
-		senderAddr ?? { senderAddr = NetAddr.localAddr };
-		if (sender.notNil and: { sender != senderAddr }) {
-			this.changeSender(senderAddr);
-		};
-		//	this.broadcast;
-	}
-
-	changeSender { | newSender |
-		postf(
-			"Sender change in attribute: %.\nOld sender: %\nNew sender: %\n",
-			name, sender, newSender
-		);
-		sender = newSender;
-	}
-
-	broadcast { subscribers do: { | s | s.sendMsg('/update', name, *data); } }
-	addSubscriber { | subscriber | subscribers add: subscriber; }
-	removeSubscriber { | subscriber | subscribers remove: subscriber; }
-}
