@@ -112,11 +112,9 @@ Subscriber {
  		*/
 		var attribute;
 		attribute = this.getAttribute(attributeName);
-		/*
 		if (attribute.data.isNil) {
 			this.request(attributeName, subscribe: true);
 		};
-		*/
 		^attribute.data;
 	}
 
