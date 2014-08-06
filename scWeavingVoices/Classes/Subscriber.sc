@@ -35,7 +35,7 @@ Subscriber {
 
 	*initClass {
 		NetAddr.broadcastFlag = true;
-		//		StartUp add: { Subscriber() };
+		StartUp add: { Subscriber() };
 	}
 
 	*new { | name = 'default' |
