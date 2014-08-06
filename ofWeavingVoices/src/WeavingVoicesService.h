@@ -12,8 +12,8 @@
 #include "WeavingVoicesAttribute.h"
 
 
-#define SERVER_IP ""
-#define SERVER_PORT
+#define SERVER_IP "localhost"
+#define SERVER_PORT 9001
 
 class WeavingVoicesService{
 public:
