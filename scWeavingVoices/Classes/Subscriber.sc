@@ -80,7 +80,7 @@ Subscriber {
 			attributeName = msg[1];
 			subscribe_p = msg[2];
 			attribute = this.getAttribute(attributeName);
-			if (subscribe_p === true) { attribute addSubscriber: address };
+			if (subscribe_p == 1) { attribute addSubscriber: address };
 			data = attribute.data;
 			data !? { address.sendMsg(\update, attributeName, *data) };
 		}, requestMsg);
