@@ -2,9 +2,23 @@
 Redo of Publisher-Subscriber using broadcast.
 
 Wed, Aug  6 2014, 04:13 EEST
+
+For documentation: 
+
+The functionalithy is organized in the following categories (groups of methods)
+
+1. Init subscriber : Initializing the communication process (setup of IPs and responders)
+2. Actions triggered locally by the app: get, put, request a subscription or a value.
+3. Actions triggered remotely from other nodes (via OSC): 
+   - return a requested value, 
+   - update a received attribute value
+   - subcribe 
+   - unsubscribe
+
+
 */
 
-Services : IdentityDictionary {
+Subscriber : IdentityDictionary {
 	
 	//	classvar <servicesBroadcastMessage = '/services';
 	classvar <localAddress;
@@ -25,28 +39,71 @@ Services : IdentityDictionary {
 
 	*new { | name = 'default' |
 		^Registry(this, name, {
-			super.new.initServices(name);
+			super.new.initSubscriber(name);
 		});
 	}
 
-	initServices { | argName |
+	initSubscriber { | argName |
 		name = argName;
 		broadcastAddress = NetAddr(NetAddr.getBroadcastIp, port);
 		localAddress = NetAddr(NetAddr.getLocalIp, port);
-		/*
-		serviceRegistrationResponder = OSCFunc({ | msg, time, address |
-			[this, thisMethod.name, "attribute list received:", msg[1..]].postln;
-			msg[1..] do: this.addAttributeIfNew(_);
-		}, servicesBroadcastMsg, nil, port);
-		broadcastRoutine = {
-			loop {
-				this.broadcastServices;
-				broadcastRate.wait;
-			}
-		}.fork;
-		*/
+		this.initSubscriptionResponses;
 	}
 
+	// ================================================================
+	// responses to requests from subscribers or remote subsciptions
+	// ================================================================
+
+	initSubscriptionResponses {
+		// var <>updateMsg = '/update';
+		OSCFunc({ | msg, time, address |
+			// msg[0] -> updateMsg
+			// msg[1] -> Name of attribute updated
+			// msg[2...] -> Data sent (value of attribute)
+			var attribute_name, attribute, data;
+			attribute_name = msg[1];
+			data = msg[2..];
+			attribute = this.getAttribute(
+				attributeName, 
+				remotely: false, 
+				subscribe: false
+			);
+			attribute.data = data;
+			this.changed(attributeName, *data);
+		}, updateMsg)
+
+		// var <>requestMsg = '/request';
+		OSCFunc({ | msg, time, address |
+			// msg[0] -> requestMsg
+			// msg[1] -> Name of attribute requested
+			// msg[2] -> flag: if true then subscribe
+			var attribute_name, subcsribe_p, attribute;
+			attribute_name = msg[1];
+			subscribe_p = msg[2];
+			attribute = this.getAttribute(
+				attributeName, 
+				remotely: false, 
+				subscribe: false
+			);
+			if (subscribe_p === true) { attribute addSubscriber: address };
+			address.sendMsg(\update, attributeName, *attribute.data);
+		}, requestMsg);
+	
+		// var <>unsubscribeMsg = '/unsubscribe';
+		OSCFunc({ | msg, time, address |
+			// msg[0] -> requestMsg
+			// msg[1] -> Name of attribute requested
+			// msg[2] -> flag: if true then subscribe
+			var attribute_name, attribute;
+			attribute_name = msg[1];
+			attribute = this.[attributeName];
+			attribute !? { attribute unsubscribe: address };
+		}, unsubscribeMsg)
+	}
+
+	// ================================================================
+	// access and setting of attributes
+	// ================================================================
 	get { | attributeName, subscribe = true |
 		/*  --- if attribute exists, get its local cached value.
 			--- Else:
@@ -71,7 +128,7 @@ Services : IdentityDictionary {
 		if (broadcast) { attribute.broadcast };
 	}
 
-	getAttribute { | attributeName, value, remotely = true, subscribe = true |
+	getAttribute { | attributeName, remotely = true, subscribe = true |
 		var attribute;
 		attribute = this[attributeName];
 		attribute ?? {
@@ -79,7 +136,7 @@ Services : IdentityDictionary {
 			this[attributeName] = attribute;
 			if (remotely) { this.request(attributeName, subscribe) };
 		};
-		^attribute.data = value;
+		^attribute;
 	}
 
 	request { | attributeName, subscribe = true |
@@ -104,11 +161,17 @@ Services : IdentityDictionary {
 		attribute addSubscriber: subscriberAddress;
 	}
 
-	// Set value 
-	set {
+	// ================================================================
+	// Interface to local logic: Actions to be executed when an attribute is updated
+	// ================================================================
 
+	addUpdateAction { | listener, attributeName, action |
+		listener.addNotifier(this, attributeName, action);
 	}
 
+	removeUpdateAction { | listener, attributeName |
+		listener.removeNotifier(this, attributeName);
+	}
 }
 
 Attribute {
