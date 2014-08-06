@@ -14,8 +14,6 @@ The functionalithy is organized in the following categories (groups of methods)
    - update a received attribute value
    - subcribe 
    - unsubscribe
-
-
 */
 
 Subscriber : IdentityDictionary {
@@ -35,6 +33,7 @@ Subscriber : IdentityDictionary {
 
 	*initClass {
 		NetAddr.broadcastFlag = true;
+		StartUp add: { Subscriber() };
 	}
 
 	*new { | name = 'default' |
@@ -97,6 +96,9 @@ Subscriber : IdentityDictionary {
 	// ================================================================
 	// access and setting of attributes
 	// ================================================================
+
+	*get { | attributeName | ^this.new.get(attributeName) }
+
 	get { | attributeName |
 		/*  --- if attribute exists, get its local cached value.
 			--- Else:
@@ -111,6 +113,10 @@ Subscriber : IdentityDictionary {
 			this.request(attributeName, subscribe: true);
 		};
 		^attribute.data;
+	}
+
+	*put { | attributeName, value, broadcast = true |
+		this.new.put(attributeName, value, broadcast)
 	}
 
 	put { | attributeName, value, broadcast = true |
@@ -131,8 +137,16 @@ Subscriber : IdentityDictionary {
 		^attribute;
 	}
 
+	*request {  | attributeName, subscribe = false |
+		this.new.request(attributeName, subscribe);
+	}
+
 	request { | attributeName, subscribe = false |
 		broadcastAddress.sendMsg(requestMsg, attributeName, subscribe);
+	}
+
+	*unsubscribe { | attributeName |
+		this.new.unsubscribe(attributeName);
 	}
 
 	unsubscribe { | attributeName |
@@ -142,23 +156,21 @@ Subscriber : IdentityDictionary {
 			attribute.sender.sendMsg(unsubscribeMsg);
 		}
 	}
-
-	addSubscriber { | attributeName, subscriberAddress |
-		var attribute;
-		attribute = this[attributeName];
-		attribute ?? {
-			attribute = Attribute(attributeName, nil, nil);
-			this[attributeName] = attribute;
-		};
-		attribute addSubscriber: subscriberAddress;
-	}
-
+	
 	// ================================================================
 	// Interface to local logic: Actions to be executed when an attribute is updated
 	// ================================================================
 
+	*addUpdateAction { | listener, attributeName, action |
+		this.new.addUpdateAction(listener, attributeName, action);
+	}
+
 	addUpdateAction { | listener, attributeName, action |
 		listener.addNotifier(this, attributeName, action);
+	}
+
+	*removeUpdateAction { | listener, attributeName |
+		this.new.removeUpdateAction(listener, attributeName);
 	}
 
 	removeUpdateAction { | listener, attributeName |
