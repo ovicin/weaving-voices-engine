@@ -39,7 +39,6 @@
 		A514508919927BB600FF4C43 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508519927BB600FF4C43 /* Attribute.cpp */; };
 		A514508A19927BB600FF4C43 /* Subscriber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508719927BB600FF4C43 /* Subscriber.cpp */; };
 		A514508D19927C3C00FF4C43 /* ofxBeloi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */; };
-		A514509019927D7700FF4C43 /* ew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508E19927D7700FF4C43 /* ew.cpp */; };
 		A53B59AF19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */; };
 		A570F24219904EB60033CE56 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21B19904EB60033CE56 /* ofxOscBundle.cpp */; };
 		A570F24319904EB60033CE56 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21D19904EB60033CE56 /* ofxOscMessage.cpp */; };
@@ -239,8 +238,6 @@
 		A514508819927BB600FF4C43 /* Subscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Subscriber.h; path = ../BeloiCpp/Subscriber.h; sourceTree = SOURCE_ROOT; };
 		A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBeloi.cpp; sourceTree = "<group>"; };
 		A514508C19927C3C00FF4C43 /* ofxBeloi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBeloi.h; sourceTree = "<group>"; };
-		A514508E19927D7700FF4C43 /* ew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ew.cpp; sourceTree = "<group>"; };
-		A514508F19927D7700FF4C43 /* ew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ew.h; sourceTree = "<group>"; };
 		A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		A53B59AE19422BAD0075A8EF /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		A570F21919904EB60033CE56 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
@@ -883,8 +880,6 @@
 				A5B0C58A1992325D0056B3CD /* IPAddress.h */,
 				A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */,
 				A514508C19927C3C00FF4C43 /* ofxBeloi.h */,
-				A514508E19927D7700FF4C43 /* ew.cpp */,
-				A514508F19927D7700FF4C43 /* ew.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1051,7 +1046,6 @@
 				A570F24619904EB60033CE56 /* ofxOscSender.cpp in Sources */,
 				A514508919927BB600FF4C43 /* Attribute.cpp in Sources */,
 				F9C20834354ACC8337320B8C /* ofxUIMultiImageToggle.cpp in Sources */,
-				A514509019927D7700FF4C43 /* ew.cpp in Sources */,
 				E3D59A6B55F05669B3FBF8BD /* ofxUINumberDialer.cpp in Sources */,
 				D60E54E7FD6E19BC8636E0D2 /* ofxUIRadio.cpp in Sources */,
 				1587708E3CAC72997E43504E /* ofxUIRangeSlider.cpp in Sources */,

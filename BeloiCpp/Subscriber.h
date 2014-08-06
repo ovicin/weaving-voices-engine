@@ -38,7 +38,7 @@ public:
      
      */
     
-    void put(WeavingVoicesAttribute &attribute);
+    void put(Attribute &attribute);
     
     /*SUBSCRIBE: Subscribes to an attribute locally or remotely.
     
@@ -54,7 +54,7 @@ public:
         /request /AttributeName /ip /port
      */
     
-    void subscribe(WeavingVoicesAttribute &attribute);
+    void subscribe(Attribute &attribute);
     
     /*
      SENDS OSC Message Format
@@ -62,7 +62,7 @@ public:
      
      */
     
-    void unsubscribe(WeavingVoicesAttribute &attribute);
+    void unsubscribe(Attribute &attribute);
     
     
     /*
