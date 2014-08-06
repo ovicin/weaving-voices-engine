@@ -34,7 +34,7 @@ Subscriber : IdentityDictionary {
 
 	*initClass {
 		NetAddr.broadcastFlag = true;
-		StartUp add: { Subscriber() };
+		//		StartUp add: { Subscriber() };
 	}
 
 	*new { | name = 'default' |
@@ -104,7 +104,7 @@ Subscriber : IdentityDictionary {
 		/*  --- if attribute exists, get its local cached value.
 			--- Else:
 			   (1) create attribute, setting its value to nil.
-			   (2) request the value from network and  when received set its value.
+			   (2) request the value from network and when received set its value.
 			   (3) if subscribe is true, then subscribe to the attribute remotely. 
 			--- Finally: return the current value of the attribute
  		*/
