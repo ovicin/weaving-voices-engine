@@ -16,12 +16,14 @@ The functionalithy is organized in the following categories (groups of methods)
    - unsubscribe
 */
 
-Subscriber : IdentityDictionary {
+
+Subscriber {
 	
 	//	classvar <servicesBroadcastMessage = '/services';
 	classvar <localAddress;
 	classvar <broadcastAddress;
 
+	var <attributes;
 	var <>requestMsg = '/request';
 	var <>unsubscribeMsg = '/unsubscribe';
 	var <>updateMsg = '/update';
@@ -33,7 +35,7 @@ Subscriber : IdentityDictionary {
 
 	*initClass {
 		NetAddr.broadcastFlag = true;
-		StartUp add: { Subscriber() };
+		//		StartUp add: { Subscriber() };
 	}
 
 	*new { | name = 'default' |
@@ -43,6 +45,7 @@ Subscriber : IdentityDictionary {
 	}
 
 	initSubscriber { | argName |
+		attributes = IdentityDictionary();
 		name = argName;
 		broadcastAddress = NetAddr(NetAddr.getBroadcastIp, port);
 		localAddress = NetAddr(NetAddr.getLocalIp, port);
@@ -88,7 +91,7 @@ Subscriber : IdentityDictionary {
 			// msg[2] -> flag: if true then subscribe
 			var attributeName, attribute;
 			attributeName = msg[1];
-			attribute = this[attributeName];
+			attribute = attributes[attributeName];
 			attribute !? { attribute unsubscribe: address };
 		}, unsubscribeMsg)
 	}
@@ -103,15 +106,17 @@ Subscriber : IdentityDictionary {
 		/*  --- if attribute exists, get its local cached value.
 			--- Else:
 			   (1) create attribute, setting its value to nil.
-			   (2) request the value from network and  when received set its value.
+			   (2) request the value from network and when received set its value.
 			   (3) if subscribe is true, then subscribe to the attribute remotely. 
 			--- Finally: return the current value of the attribute
  		*/
 		var attribute;
-		attribute = prGetAttribute(attributeName);
+		attribute = this.prGetAttribute(attributeName);
+		/*
 		if (attribute.data.isNil) {
 			this.request(attributeName, subscribe: true);
 		};
+		*/
 		^attribute.data;
 	}
 
@@ -121,7 +126,7 @@ Subscriber : IdentityDictionary {
 
 	put { | attributeName, value, broadcast = true |
 		var attribute;
-		attribute = this.getAttributeLocally(attributeName);
+		attribute = this.prGetAttribute(attributeName);
 		attribute.data = value;
 		this.changed(attributeName, *value);
 		if (broadcast) { attribute.broadcast };
@@ -129,11 +134,12 @@ Subscriber : IdentityDictionary {
 
 	prGetAttribute { | attributeName |
 		var attribute;
-		attribute = this[attributeName];
+		attribute = attributes[attributeName];
 		attribute ?? {
 			attribute = Attribute(attributeName);
-			this[attributeName] = attribute;
+			attributes[attributeName] = attribute;
 		};
+
 		^attribute;
 	}
 
@@ -151,12 +157,12 @@ Subscriber : IdentityDictionary {
 
 	unsubscribe { | attributeName |
 		var attribute;
-		attribute = this[attributeName];
+		attribute = attributes[attributeName];
 		attribute !? {
 			attribute.sender.sendMsg(unsubscribeMsg);
 		}
 	}
-	
+
 	// ================================================================
 	// Interface to local logic: Actions to be executed when an attribute is updated
 	// ================================================================
@@ -184,9 +190,8 @@ Attribute {
 	var <name, <sender, <data, <time, <subscribers;
 
 	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, 
-			sender ?? Subscriber.localAddress,
-			time ?? { Date.getDate.rawSeconds }, Set()
+		^this.newCopyArgs(name, sender ?? Subscriber.localAddress,
+			data, time ?? { Date.getDate.rawSeconds }, Set()
 		);
 	}
 
