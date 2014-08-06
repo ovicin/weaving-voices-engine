@@ -36,8 +36,11 @@
 		9BE4AE0AA2B8C436BDFE9D4D /* ofxUIDragableLabelButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFD5D3C9D38E29DB72B32254 /* ofxUIDragableLabelButton.cpp */; };
 		9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832BDC407620CDBA568B713D /* tinyxmlerror.cpp */; };
 		9F5C6DD965B4F3A6DB5B88F8 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02FF3B8D243CFB85AE0909EB /* ofxUI2DGraph.cpp */; };
+		A514508919927BB600FF4C43 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508519927BB600FF4C43 /* Attribute.cpp */; };
+		A514508A19927BB600FF4C43 /* Subscriber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508719927BB600FF4C43 /* Subscriber.cpp */; };
+		A514508D19927C3C00FF4C43 /* ofxBeloi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */; };
+		A514509019927D7700FF4C43 /* ew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A514508E19927D7700FF4C43 /* ew.cpp */; };
 		A53B59AF19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */; };
-		A570F21619904E470033CE56 /* WeavingVoicesService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21419904E470033CE56 /* WeavingVoicesService.cpp */; };
 		A570F24219904EB60033CE56 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21B19904EB60033CE56 /* ofxOscBundle.cpp */; };
 		A570F24319904EB60033CE56 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21D19904EB60033CE56 /* ofxOscMessage.cpp */; };
 		A570F24419904EB60033CE56 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F21F19904EB60033CE56 /* ofxOscParameterSync.cpp */; };
@@ -50,7 +53,6 @@
 		A570F24B19904EB60033CE56 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F23C19904EB60033CE56 /* OscPrintReceivedElements.cpp */; };
 		A570F24C19904EB60033CE56 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F23E19904EB60033CE56 /* OscReceivedElements.cpp */; };
 		A570F24D19904EB60033CE56 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F24019904EB60033CE56 /* OscTypes.cpp */; };
-		A570F253199050760033CE56 /* WeavingVoicesAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F251199050760033CE56 /* WeavingVoicesAttribute.cpp */; };
 		A570F259199056680033CE56 /* eventWeavingVoicesAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A570F257199056680033CE56 /* eventWeavingVoicesAttribute.cpp */; };
 		A59570B019411B1400539D7A /* WeavingPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59570AE19411B1400539D7A /* WeavingPoint.cpp */; };
 		A59C9E121943AF7900F34121 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9DF71943AF7900F34121 /* Action.cpp */; };
@@ -66,7 +68,7 @@
 		A59C9E1C1943AF7900F34121 /* Rule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0C1943AF7900F34121 /* Rule.cpp */; };
 		A59C9E1D1943AF7900F34121 /* Rules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E0E1943AF7900F34121 /* Rules.cpp */; };
 		A59C9E1E1943AF7900F34121 /* RuleSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59C9E101943AF7900F34121 /* RuleSet.cpp */; };
-		A5B73AC419858C6F0047A055 /* eventSelectedWeavingPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */; };
+		A5B0C58B1992325D0056B3CD /* IPAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5B0C5891992325D0056B3CD /* IPAddress.cpp */; };
 		ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5613D5D24B00D8AD909F7E6A /* ofxUISortableList.cpp */; };
 		AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345327AA463407B3DADBADE /* ofxUIWaveform.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -231,10 +233,16 @@
 		961DE8B564EF22E65C9480AE /* ofxUI2DPad.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUI2DPad.h; path = ../../../addons/ofxUI/src/ofxUI2DPad.h; sourceTree = SOURCE_ROOT; };
 		987AD08F097CB59F432D3C8A /* ofxGlow.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGlow.h; path = ../../../addons/ofxFX/src/filters/ofxGlow.h; sourceTree = SOURCE_ROOT; };
 		9D33A3E929B0B5D9C002E30E /* ofxUIRadio.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIRadio.cpp; path = ../../../addons/ofxUI/src/ofxUIRadio.cpp; sourceTree = SOURCE_ROOT; };
+		A514508519927BB600FF4C43 /* Attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Attribute.cpp; path = ../BeloiCpp/Attribute.cpp; sourceTree = SOURCE_ROOT; };
+		A514508619927BB600FF4C43 /* Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attribute.h; path = ../BeloiCpp/Attribute.h; sourceTree = SOURCE_ROOT; };
+		A514508719927BB600FF4C43 /* Subscriber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Subscriber.cpp; path = ../BeloiCpp/Subscriber.cpp; sourceTree = SOURCE_ROOT; };
+		A514508819927BB600FF4C43 /* Subscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Subscriber.h; path = ../BeloiCpp/Subscriber.h; sourceTree = SOURCE_ROOT; };
+		A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBeloi.cpp; sourceTree = "<group>"; };
+		A514508C19927C3C00FF4C43 /* ofxBeloi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBeloi.h; sourceTree = "<group>"; };
+		A514508E19927D7700FF4C43 /* ew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ew.cpp; sourceTree = "<group>"; };
+		A514508F19927D7700FF4C43 /* ew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ew.h; sourceTree = "<group>"; };
 		A53B59AD19422BAD0075A8EF /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		A53B59AE19422BAD0075A8EF /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
-		A570F21419904E470033CE56 /* WeavingVoicesService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeavingVoicesService.cpp; sourceTree = "<group>"; };
-		A570F21519904E470033CE56 /* WeavingVoicesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeavingVoicesService.h; sourceTree = "<group>"; };
 		A570F21919904EB60033CE56 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
 		A570F21A19904EB60033CE56 /* ofxOscArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
 		A570F21B19904EB60033CE56 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
@@ -267,8 +275,6 @@
 		A570F23F19904EB60033CE56 /* OscReceivedElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		A570F24019904EB60033CE56 /* OscTypes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		A570F24119904EB60033CE56 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
-		A570F251199050760033CE56 /* WeavingVoicesAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeavingVoicesAttribute.cpp; sourceTree = "<group>"; };
-		A570F252199050760033CE56 /* WeavingVoicesAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeavingVoicesAttribute.h; sourceTree = "<group>"; };
 		A570F257199056680033CE56 /* eventWeavingVoicesAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventWeavingVoicesAttribute.cpp; sourceTree = "<group>"; };
 		A570F258199056680033CE56 /* eventWeavingVoicesAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventWeavingVoicesAttribute.h; sourceTree = "<group>"; };
 		A59570AE19411B1400539D7A /* WeavingPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeavingPoint.cpp; sourceTree = "<group>"; };
@@ -300,8 +306,8 @@
 		A59C9E0F1943AF7900F34121 /* Rules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rules.h; sourceTree = "<group>"; };
 		A59C9E101943AF7900F34121 /* RuleSet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RuleSet.cpp; sourceTree = "<group>"; };
 		A59C9E111943AF7900F34121 /* RuleSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleSet.h; sourceTree = "<group>"; };
-		A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventSelectedWeavingPoint.cpp; sourceTree = "<group>"; };
-		A5B73AC319858C6F0047A055 /* eventSelectedWeavingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventSelectedWeavingPoint.h; sourceTree = "<group>"; };
+		A5B0C5891992325D0056B3CD /* IPAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IPAddress.cpp; sourceTree = "<group>"; };
+		A5B0C58A1992325D0056B3CD /* IPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPAddress.h; sourceTree = "<group>"; };
 		A64B8AA7481267CD4A76C16B /* ofxUITabBar.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUITabBar.cpp; path = ../../../addons/ofxUI/src/ofxUITabBar.cpp; sourceTree = SOURCE_ROOT; };
 		A8896AC3BECAAA504E3828F4 /* ofxUIEventArgs.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIEventArgs.cpp; path = ../../../addons/ofxUI/src/ofxUIEventArgs.cpp; sourceTree = SOURCE_ROOT; };
 		ACE80EF2FE2F3D0A2ED1A824 /* ofxTint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTint.h; path = ../../../addons/ofxFX/src/generative/ofxTint.h; sourceTree = SOURCE_ROOT; };
@@ -488,6 +494,18 @@
 				D60F85FE32E11F4003B80627 /* src */,
 			);
 			name = ofxUI;
+			sourceTree = "<group>";
+		};
+		A514508419927BB600FF4C43 /* BeloiCpp */ = {
+			isa = PBXGroup;
+			children = (
+				A514508519927BB600FF4C43 /* Attribute.cpp */,
+				A514508619927BB600FF4C43 /* Attribute.h */,
+				A514508719927BB600FF4C43 /* Subscriber.cpp */,
+				A514508819927BB600FF4C43 /* Subscriber.h */,
+			);
+			name = BeloiCpp;
+			path = ../BeloiCpp;
 			sourceTree = "<group>";
 		};
 		A53B59AB19422BAD0075A8EF /* ofxMSAInteractiveObject */ = {
@@ -840,6 +858,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				A514508419927BB600FF4C43 /* BeloiCpp */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -858,14 +877,14 @@
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
 				A59570AE19411B1400539D7A /* WeavingPoint.cpp */,
 				A59570AF19411B1400539D7A /* WeavingPoint.h */,
-				A5B73AC219858C6F0047A055 /* eventSelectedWeavingPoint.cpp */,
-				A5B73AC319858C6F0047A055 /* eventSelectedWeavingPoint.h */,
-				A570F21419904E470033CE56 /* WeavingVoicesService.cpp */,
-				A570F21519904E470033CE56 /* WeavingVoicesService.h */,
-				A570F251199050760033CE56 /* WeavingVoicesAttribute.cpp */,
-				A570F252199050760033CE56 /* WeavingVoicesAttribute.h */,
 				A570F257199056680033CE56 /* eventWeavingVoicesAttribute.cpp */,
 				A570F258199056680033CE56 /* eventWeavingVoicesAttribute.h */,
+				A5B0C5891992325D0056B3CD /* IPAddress.cpp */,
+				A5B0C58A1992325D0056B3CD /* IPAddress.h */,
+				A514508B19927C3C00FF4C43 /* ofxBeloi.cpp */,
+				A514508C19927C3C00FF4C43 /* ofxBeloi.h */,
+				A514508E19927D7700FF4C43 /* ew.cpp */,
+				A514508F19927D7700FF4C43 /* ew.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -986,11 +1005,13 @@
 				A59570B019411B1400539D7A /* WeavingPoint.cpp in Sources */,
 				A570F24D19904EB60033CE56 /* OscTypes.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
+				A5B0C58B1992325D0056B3CD /* IPAddress.cpp in Sources */,
 				A570F24919904EB60033CE56 /* UdpSocket.cpp in Sources */,
 				A59C9E1E1943AF7900F34121 /* RuleSet.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				A570F259199056680033CE56 /* eventWeavingVoicesAttribute.cpp in Sources */,
 				5355E99D8BBC71222AA2B9FD /* ofxFXObject.cpp in Sources */,
+				A514508D19927C3C00FF4C43 /* ofxBeloi.cpp in Sources */,
 				9F5C6DD965B4F3A6DB5B88F8 /* ofxUI2DGraph.cpp in Sources */,
 				4B3ED367CA852D522E2EE996 /* ofxUI2DPad.cpp in Sources */,
 				F1E8DE8734BA6F69A5112FA8 /* ofxUIBaseDraws.cpp in Sources */,
@@ -1005,6 +1026,7 @@
 				A59C9E1C1943AF7900F34121 /* Rule.cpp in Sources */,
 				084025DA517D8329301FE1B6 /* ofxUIEventArgs.cpp in Sources */,
 				7252706DA14C1BE63950ADDA /* ofxUIFPS.cpp in Sources */,
+				A514508A19927BB600FF4C43 /* Subscriber.cpp in Sources */,
 				22030CBDCC25D815E7ED6757 /* ofxUIFPSSlider.cpp in Sources */,
 				A59C9E141943AF7900F34121 /* CubeAction.cpp in Sources */,
 				3D4EA8E172D3E4A30FEFA969 /* ofxUIImage.cpp in Sources */,
@@ -1027,21 +1049,20 @@
 				F440B307990F8F5CE40B9111 /* ofxUIMovingGraph.cpp in Sources */,
 				222C3AB10FA3158602718602 /* ofxUIMultiImageButton.cpp in Sources */,
 				A570F24619904EB60033CE56 /* ofxOscSender.cpp in Sources */,
+				A514508919927BB600FF4C43 /* Attribute.cpp in Sources */,
 				F9C20834354ACC8337320B8C /* ofxUIMultiImageToggle.cpp in Sources */,
+				A514509019927D7700FF4C43 /* ew.cpp in Sources */,
 				E3D59A6B55F05669B3FBF8BD /* ofxUINumberDialer.cpp in Sources */,
 				D60E54E7FD6E19BC8636E0D2 /* ofxUIRadio.cpp in Sources */,
 				1587708E3CAC72997E43504E /* ofxUIRangeSlider.cpp in Sources */,
 				59C5F2F5D7254C33C00F97CB /* ofxUIRectangle.cpp in Sources */,
 				FE0F1DB69ACCD163E9DA2A15 /* ofxUIRotarySlider.cpp in Sources */,
-				A5B73AC419858C6F0047A055 /* eventSelectedWeavingPoint.cpp in Sources */,
 				43BADBB2FE0F17D34B57A705 /* ofxUIScrollableCanvas.cpp in Sources */,
 				A59C9E151943AF7900F34121 /* IcosphereAction.cpp in Sources */,
 				A59C9E161943AF7900F34121 /* LineAction.cpp in Sources */,
 				740A58CBFDFE578C83A349AF /* ofxUISlider.cpp in Sources */,
-				A570F253199050760033CE56 /* WeavingVoicesAttribute.cpp in Sources */,
 				A570F24C19904EB60033CE56 /* OscReceivedElements.cpp in Sources */,
 				A570F24B19904EB60033CE56 /* OscPrintReceivedElements.cpp in Sources */,
-				A570F21619904E470033CE56 /* WeavingVoicesService.cpp in Sources */,
 				ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */,
 				BFEFCE32DAFE10A8EB519F6C /* ofxUISpacer.cpp in Sources */,
 				A570F24519904EB60033CE56 /* ofxOscReceiver.cpp in Sources */,
