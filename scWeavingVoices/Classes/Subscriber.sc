@@ -66,8 +66,6 @@ Subscriber {
 			var attributeName, attribute, data;
 			attributeName = msg[1];
 			data = msg[2..];
-			[this, thisMethod.name, "attributeName is:", attributeName, "attribute name class is: ", 
-			attributeName.class].postln;
 			attribute = this.getAttribute(attributeName);
 			attribute.data = data;
 			this.changed(attributeName, *data);
