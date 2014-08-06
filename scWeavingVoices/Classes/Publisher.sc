@@ -165,34 +165,7 @@ Subscriber : NetAddr {
 	disable { responder.disable }
 }
 
-Attribute {
-	/*  Data item stored in any node of the network.
-		Broadcast  changes in your data to all subscribed nodes in the system */
-	var <name, <sender, <data, <time, <subscribers;
+/*
+Note: Attribute moved to Services.sc
+*/
 
-	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, time ?? { Date.getDate.rawSeconds }, Set());
-	}
-
-	setData { | argData senderAddr |
-		data = argData;
-		// time = argTime ?? { Process.elapsedTime };
-		senderAddr ?? { senderAddr = NetAddr.localAddr };
-		if (sender.notNil and: { sender != senderAddr }) {
-			this.changeSender(senderAddr);
-		};
-		//	this.broadcast;
-	}
-
-	changeSender { | newSender |
-		postf(
-			"Sender change in attribute: %.\nOld sender: %\nNew sender: %\n",
-			name, sender, newSender
-		);
-		sender = newSender;
-	}
-
-	broadcast { subscribers do: { | s | s.sendMsg('/update', name, *data); } }
-	addSubscriber { | subscriber | subscribers add: subscriber; }
-	removeSubscriber { | subscriber | subscribers remove: subscriber; }
-}
