@@ -30,7 +30,7 @@ Subscriber {
 	var <name;
 	var <broadcastRoutine;
 	var <broadcastRate = 1;
-	var <port = 57130;
+	var <port;
 	var serviceRegistrationResponder;
 
 	*initClass {
@@ -45,6 +45,7 @@ Subscriber {
 	}
 
 	initSubscriber { | argName |
+		port = NetAddr.localAddr.port;
 		attributes = IdentityDictionary();
 		name = argName;
 		broadcastAddress = NetAddr(NetAddr.getBroadcastIp, port);
