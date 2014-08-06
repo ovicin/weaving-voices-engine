@@ -30,7 +30,7 @@ Subscriber {
 	var <name;
 	var <broadcastRoutine;
 	var <broadcastRate = 1;
-	var <port = 57130;
+	var <port;
 	var serviceRegistrationResponder;
 
 	*initClass {
@@ -45,6 +45,7 @@ Subscriber {
 	}
 
 	initSubscriber { | argName |
+		port = NetAddr.localAddr.port;
 		attributes = IdentityDictionary();
 		name = argName;
 		broadcastAddress = NetAddr(NetAddr.getBroadcastIp, port);
@@ -65,7 +66,7 @@ Subscriber {
 			var attributeName, attribute, data;
 			attributeName = msg[1];
 			data = msg[2..];
-			attribute = this.prGetAttribute(attributeName);
+			attribute = this.getAttribute(attributeName);
 			attribute.data = data;
 			this.changed(attributeName, *data);
 		}, updateMsg);
@@ -78,7 +79,7 @@ Subscriber {
 			var attributeName, subscribe_p, attribute, data;
 			attributeName = msg[1];
 			subscribe_p = msg[2];
-			attribute = this.prGetAttribute(attributeName);
+			attribute = this.getAttribute(attributeName);
 			if (subscribe_p === true) { attribute addSubscriber: address };
 			data = attribute.data;
 			data !? { address.sendMsg(\update, attributeName, *data) };
@@ -111,12 +112,10 @@ Subscriber {
 			--- Finally: return the current value of the attribute
  		*/
 		var attribute;
-		attribute = this.prGetAttribute(attributeName);
-		/*
+		attribute = this.getAttribute(attributeName);
 		if (attribute.data.isNil) {
 			this.request(attributeName, subscribe: true);
 		};
-		*/
 		^attribute.data;
 	}
 
@@ -126,20 +125,19 @@ Subscriber {
 
 	put { | attributeName, value, broadcast = true |
 		var attribute;
-		attribute = this.prGetAttribute(attributeName);
+		attribute = this.getAttribute(attributeName);
 		attribute.data = value;
 		this.changed(attributeName, *value);
 		if (broadcast) { attribute.broadcast };
 	}
 
-	prGetAttribute { | attributeName |
+	getAttribute { | attributeName |
 		var attribute;
 		attribute = attributes[attributeName];
 		attribute ?? {
 			attribute = Attribute(attributeName);
 			attributes[attributeName] = attribute;
 		};
-
 		^attribute;
 	}
 
@@ -187,7 +185,7 @@ Subscriber {
 Attribute {
 	/*  Data item stored in any node of the network.
 		Broadcast  changes in your data to all subscribed nodes in the system */
-	var <name, <sender, <data, <time, <subscribers;
+	var <name, <sender, <>data, <time, <subscribers;
 
 	*new { | name, sender, data, time, subscribers |
 		^this.newCopyArgs(name, sender ?? Subscriber.localAddress,
