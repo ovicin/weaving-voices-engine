@@ -16,6 +16,7 @@ The functionalithy is organized in the following categories (groups of methods)
    - unsubscribe
 */
 
+
 Subscriber : IdentityDictionary {
 	
 	//	classvar <servicesBroadcastMessage = '/services';
@@ -108,7 +109,7 @@ Subscriber : IdentityDictionary {
 			--- Finally: return the current value of the attribute
  		*/
 		var attribute;
-		attribute = prGetAttribute(attributeName);
+		attribute = this.prGetAttribute(attributeName);
 		if (attribute.data.isNil) {
 			this.request(attributeName, subscribe: true);
 		};
@@ -121,7 +122,7 @@ Subscriber : IdentityDictionary {
 
 	put { | attributeName, value, broadcast = true |
 		var attribute;
-		attribute = this.getAttributeLocally(attributeName);
+		attribute = this.prGtAttribute(attributeName);
 		attribute.data = value;
 		this.changed(attributeName, *value);
 		if (broadcast) { attribute.broadcast };
