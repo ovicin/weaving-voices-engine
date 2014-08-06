@@ -9,12 +9,12 @@
 #pragma once
 
 #include "ofMain.h"
-#include "WeavingVoicesAttribute.h"
+#include "Attribute.h"
 
 class eventWeavingVoicesAttribute : public ofEventArgs{
 public:
     
-    WeavingVoicesAttribute *pWeavingVoicesAttribute;
+    Attribute *pWeavingVoicesAttribute;
     
     static ofEvent <eventWeavingVoicesAttribute> onWeavingVoicesAttribute;
     

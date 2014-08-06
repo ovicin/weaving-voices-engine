@@ -19,4 +19,4 @@ class ofxBeloi{
 private:
 ofxOscReceiver receiver;
 ofxOscSender sender;
-}
+};

@@ -8,7 +8,7 @@
 
 #include "ofxBeloi.h"
 
-
+#if 0
 WeavingVoicesService::WeavingVoicesService(){
     sender.setup(SERVER_IP, SERVER_PORT);
     
@@ -95,3 +95,5 @@ void WeavingVoicesService::update(){
         
 	}
 }
+
+#endif

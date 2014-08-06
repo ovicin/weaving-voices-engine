@@ -12,20 +12,33 @@
 #include <stdio.h>
 #include <string.h>
 #include <vector>
+
+
+
 using namespace std;
 
 class Attribute{
+    
+public:
+    Attribute(string name);
+    void setData(string PublisherNetAddress,
+                 float &data,
+                 float TimeStamp);
+    void setData(string &data);
+    void* getData();
+
+private:
     /*
      Name
     Unique identifier of an attribute offered by a service.
     */
-    string Name;
+    string name;
     
     /*
      Value
     Current value of the attribute.
     */
-    int value;
+    void *data;
     
     /*
      Net Adress
@@ -34,7 +47,7 @@ class Attribute{
         Collection of NetAdresses of the services registered to the attribute.
     */
     
-    string NetAddress;
+    string PublisherNetAddress;
     
     
     /*
@@ -46,9 +59,9 @@ class Attribute{
     /*
      time in seconds when the last update was issued (The timestamp of the OSC message that was update)
      */
-    string Time;
+     float TimeStamp;
     
     
-    void addSubscriber();
-    void removeSubscriber();
+    void addSubscriber(string subscriber);
+    void removeSubscriber(string subscriber);
 };

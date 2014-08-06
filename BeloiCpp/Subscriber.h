@@ -10,6 +10,8 @@
 
 #include "Attribute.h"
 
+#include "PlatformSpecific.h"
+
 
 
 class Subscriber{
