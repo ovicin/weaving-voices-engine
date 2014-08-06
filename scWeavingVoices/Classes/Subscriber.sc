@@ -63,11 +63,7 @@ Subscriber : IdentityDictionary {
 			var attributeName, attribute, data;
 			attributeName = msg[1];
 			data = msg[2..];
-			attribute = this.getAttribute(
-				attributeName, 
-				remotely: false, 
-				subscribe: false
-			);
+			attribute = this.prGetAttribute(attributeName);
 			attribute.data = data;
 			this.changed(attributeName, *data);
 		}, updateMsg);
@@ -77,16 +73,13 @@ Subscriber : IdentityDictionary {
 			// msg[0] -> requestMsg
 			// msg[1] -> Name of attribute requested
 			// msg[2] -> flag: if true then subscribe
-			var attributeName, subscribe_p, attribute;
+			var attributeName, subscribe_p, attribute, data;
 			attributeName = msg[1];
 			subscribe_p = msg[2];
-			attribute = this.getAttribute(
-				attributeName, 
-				remotely: false, 
-				subscribe: false
-			);
+			attribute = this.prGetAttribute(attributeName);
 			if (subscribe_p === true) { attribute addSubscriber: address };
-			address.sendMsg(\update, attributeName, *attribute.data);
+			data = attribute.data;
+			data !? { address.sendMsg(\update, attributeName, *data) };
 		}, requestMsg);
 	
 		// var <>unsubscribeMsg = '/unsubscribe';
@@ -104,7 +97,7 @@ Subscriber : IdentityDictionary {
 	// ================================================================
 	// access and setting of attributes
 	// ================================================================
-	get { | attributeName, subscribe = true |
+	get { | attributeName |
 		/*  --- if attribute exists, get its local cached value.
 			--- Else:
 			   (1) create attribute, setting its value to nil.
@@ -113,34 +106,33 @@ Subscriber : IdentityDictionary {
 			--- Finally: return the current value of the attribute
  		*/
 		var attribute;
-		attribute = this[attributeName];
-		attribute ?? {
-			attribute = Attribute(attributeName);
-			this[attributeName] = attribute;
-			this.request(attributeName, subscribe);
+		attribute = prGetAttribute(attributeName);
+		if (attribute.data.isNil) {
+			this.request(attributeName, subscribe: true);
 		};
 		^attribute.data;
 	}
 
 	put { | attributeName, value, broadcast = true |
 		var attribute;
-		attribute = this.getAttribute(attributeName, value, remotely: false);
+		attribute = this.getAttributeLocally(attributeName);
+		attribute.data = value;
+		this.changed(attributeName, *value);
 		if (broadcast) { attribute.broadcast };
 	}
 
-	getAttribute { | attributeName, remotely = true, subscribe = true |
+	prGetAttribute { | attributeName |
 		var attribute;
 		attribute = this[attributeName];
 		attribute ?? {
 			attribute = Attribute(attributeName);
 			this[attributeName] = attribute;
-			if (remotely) { this.request(attributeName, subscribe) };
 		};
 		^attribute;
 	}
 
-	request { | attributeName, subscribe = true |
-		broadcastAddress.sendMsg(requestMsg, subscribe);
+	request { | attributeName, subscribe = false |
+		broadcastAddress.sendMsg(requestMsg, attributeName, subscribe);
 	}
 
 	unsubscribe { | attributeName |
@@ -180,13 +172,16 @@ Attribute {
 	var <name, <sender, <data, <time, <subscribers;
 
 	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, time ?? { Date.getDate.rawSeconds }, Set());
+		^this.newCopyArgs(name, sender, data, 
+			sender ?? Subscriber.localAddress,
+			time ?? { Date.getDate.rawSeconds }, Set()
+		);
 	}
 
 	setData { | argData senderAddr |
 		data = argData;
 		// time = argTime ?? { Process.elapsedTime };
-		senderAddr ?? { senderAddr = NetAddr.localAddr };
+		senderAddr ?? { senderAddr = Subscriber.localAddress };
 		if (sender.notNil and: { sender != senderAddr }) {
 			this.changeSender(senderAddr);
 		};
@@ -203,9 +198,14 @@ Attribute {
 
 	broadcast {
 		subscribers do: { | s |
-			if (Subscriber.localAddr != s) { s.sendMsg('/update', name, *data); }
+			s.sendMsg('/update', name, *data);
+			//	if (localAddress != s) { s.sendMsg('/update', name, *data); }
 		} 
 	}
-	addSubscriber { | subscriber | subscribers add: subscriber; }
+
+	addSubscriber { | subscriber |
+		if (subscriber != Subscriber.localAddress) { subscribers add: subscriber };
+	}
+
 	removeSubscriber { | subscriber | subscribers remove: subscriber; }
 }
