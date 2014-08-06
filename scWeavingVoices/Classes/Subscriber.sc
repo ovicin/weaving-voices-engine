@@ -60,8 +60,8 @@ Subscriber : IdentityDictionary {
 			// msg[0] -> updateMsg
 			// msg[1] -> Name of attribute updated
 			// msg[2...] -> Data sent (value of attribute)
-			var attribute_name, attribute, data;
-			attribute_name = msg[1];
+			var attributeName, attribute, data;
+			attributeName = msg[1];
 			data = msg[2..];
 			attribute = this.getAttribute(
 				attributeName, 
@@ -70,15 +70,15 @@ Subscriber : IdentityDictionary {
 			);
 			attribute.data = data;
 			this.changed(attributeName, *data);
-		}, updateMsg)
+		}, updateMsg);
 
 		// var <>requestMsg = '/request';
 		OSCFunc({ | msg, time, address |
 			// msg[0] -> requestMsg
 			// msg[1] -> Name of attribute requested
 			// msg[2] -> flag: if true then subscribe
-			var attribute_name, subcsribe_p, attribute;
-			attribute_name = msg[1];
+			var attributeName, subscribe_p, attribute;
+			attributeName = msg[1];
 			subscribe_p = msg[2];
 			attribute = this.getAttribute(
 				attributeName, 
@@ -94,9 +94,9 @@ Subscriber : IdentityDictionary {
 			// msg[0] -> requestMsg
 			// msg[1] -> Name of attribute requested
 			// msg[2] -> flag: if true then subscribe
-			var attribute_name, attribute;
-			attribute_name = msg[1];
-			attribute = this.[attributeName];
+			var attributeName, attribute;
+			attributeName = msg[1];
+			attribute = this[attributeName];
 			attribute !? { attribute unsubscribe: address };
 		}, unsubscribeMsg)
 	}
