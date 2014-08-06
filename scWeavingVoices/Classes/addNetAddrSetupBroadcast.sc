@@ -16,7 +16,3 @@
 		.at(1).replace("inet ", "")
 	}
 }
-
-/*
-NetAddr.getLocalIp;
-*/

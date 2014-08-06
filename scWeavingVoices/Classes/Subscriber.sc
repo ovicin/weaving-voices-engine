@@ -17,12 +17,13 @@ The functionalithy is organized in the following categories (groups of methods)
 */
 
 
-Subscriber : IdentityDictionary {
+Subscriber {
 	
 	//	classvar <servicesBroadcastMessage = '/services';
 	classvar <localAddress;
 	classvar <broadcastAddress;
 
+	var <attributes;
 	var <>requestMsg = '/request';
 	var <>unsubscribeMsg = '/unsubscribe';
 	var <>updateMsg = '/update';
@@ -44,6 +45,7 @@ Subscriber : IdentityDictionary {
 	}
 
 	initSubscriber { | argName |
+		attributes = IdentityDictionary();
 		name = argName;
 		broadcastAddress = NetAddr(NetAddr.getBroadcastIp, port);
 		localAddress = NetAddr(NetAddr.getLocalIp, port);
@@ -89,7 +91,7 @@ Subscriber : IdentityDictionary {
 			// msg[2] -> flag: if true then subscribe
 			var attributeName, attribute;
 			attributeName = msg[1];
-			attribute = this[attributeName];
+			attribute = attributes[attributeName];
 			attribute !? { attribute unsubscribe: address };
 		}, unsubscribeMsg)
 	}
@@ -110,9 +112,11 @@ Subscriber : IdentityDictionary {
  		*/
 		var attribute;
 		attribute = this.prGetAttribute(attributeName);
+		/*
 		if (attribute.data.isNil) {
 			this.request(attributeName, subscribe: true);
 		};
+		*/
 		^attribute.data;
 	}
 
@@ -130,11 +134,12 @@ Subscriber : IdentityDictionary {
 
 	prGetAttribute { | attributeName |
 		var attribute;
-		attribute = this[attributeName];
+		attribute = attributes[attributeName];
 		attribute ?? {
 			attribute = Attribute(attributeName);
-			this[attributeName] = attribute;
+			attributes[attributeName] = attribute;
 		};
+
 		^attribute;
 	}
 
@@ -152,12 +157,12 @@ Subscriber : IdentityDictionary {
 
 	unsubscribe { | attributeName |
 		var attribute;
-		attribute = this[attributeName];
+		attribute = attributes[attributeName];
 		attribute !? {
 			attribute.sender.sendMsg(unsubscribeMsg);
 		}
 	}
-	
+
 	// ================================================================
 	// Interface to local logic: Actions to be executed when an attribute is updated
 	// ================================================================
@@ -185,9 +190,8 @@ Attribute {
 	var <name, <sender, <data, <time, <subscribers;
 
 	*new { | name, sender, data, time, subscribers |
-		^this.newCopyArgs(name, sender, data, 
-			sender ?? Subscriber.localAddress,
-			time ?? { Date.getDate.rawSeconds }, Set()
+		^this.newCopyArgs(name, sender ?? Subscriber.localAddress,
+			data, time ?? { Date.getDate.rawSeconds }, Set()
 		);
 	}
 
