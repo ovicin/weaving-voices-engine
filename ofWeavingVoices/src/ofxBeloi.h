@@ -12,7 +12,7 @@
 
 
 #define SERVER_IP "localhost"
-#define SERVER_PORT 57130
+#define SERVER_PORT 57120
 
 class ofxBeloi{
 
